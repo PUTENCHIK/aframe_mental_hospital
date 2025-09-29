@@ -1,0 +1,27 @@
+{
+  "name": "aframe_mental_hospital",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel index.html --port 6688",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PUTENCHIK/aframe_mental_hospital.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PUTENCHIK/aframe_mental_hospital/issues"
+  },
+  "homepage": "https://github.com/PUTENCHIK/aframe_mental_hospital#readme",
+  "devDependencies": {
+    "parcel": "^2.16.0"
+  },
+  "dependencies": {
+    "aframe": "^1.7.1"
+  }
+}
