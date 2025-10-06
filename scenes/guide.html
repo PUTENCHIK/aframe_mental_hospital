@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Dark scene — near-light</title>
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+  </head>
+  <body>
+    <!-- добавили fog: linear (можно использовать exponential) -->
+    <a-scene fog="type: linear; color: #000000; near: 2; far: 8">
+      <!-- Слабый фон (sky) чёрный -->
+      <a-sky color="#000000"></a-sky>
+
+      <!-- Слабый ambient, чтобы совсем не было мёртво чёрно -->
+      <a-entity light="type: ambient; color: #111111; intensity: 0.5"></a-entity>
+
+      <!-- Объекты сцены (материалы реагируют на свет) -->
+      <a-box id="goToScene1" class="clickable" position="-1 0.5 -3" rotation="0 45 0"
+             color="#FF0000" material="metalness: 0.1; roughness: 0.8" width="1.8" height="6"></a-box>
+
+      <a-box id="goToScene2" class="clickable" position="-1.5 0.5 0" rotation="0 45 0"
+             color="#00FF00" material="metalness: 0.1; roughness: 0.8"></a-box>
+
+      <a-plane rotation="-90 0 0" width="10" height="10" color="#222222"
+               material="metalness:0; roughness:1"></a-plane>
+
+      <!-- Камера и свет «фонарик» — light как дочерний элемент камеры -->
+      <a-entity id="cameraRig" position="0 1.6 0">
+        <a-entity id="camera" camera look-controls wasd-controls>
+          <!-- point light: светит во все стороны вокруг камеры, ограничен distance -->
+          <a-entity id="headLight"
+                    light="type: point; color: #ffffff; intensity: 2; distance: 4; decay: 2">
+          </a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!-- Курсор (для click через мышь) -->
+      <a-entity
+        cursor="fuse: false; rayOrigin: mouse"
+        raycaster="objects: .clickable">
+      </a-entity>
+    </a-scene>
+
+    <script>
+      // Пример: клик по зеленой коробке — переход
+      document.querySelector('#goToScene2').addEventListener('click', function () {
+        window.location.href = 'start-room.html';
+      });
+
+      // Опционально: переключатель фонарика (ключ F)
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'f' || e.key === 'F') {
+          const headLight = document.getElementById('headLight');
+          if (!headLight) return;
+          const lightComp = headLight.getAttribute('light');
+          // простая версия: выключаем/включаем, меняя intensity
+          const current = headLight.getAttribute('light').intensity || 0;
+          headLight.setAttribute('light', 'intensity', current > 0 ? 0 : 1.5);
+        }
+      });
+    </script>
+  </body>
+</html>

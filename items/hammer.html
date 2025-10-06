@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Молоток</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="../styles/inventory.css">
+    <link rel="stylesheet" href="../styles/notification.css">
+</head>
+<body>
+
+    <!-- Инвентарь -->
+    <div class="ui-overlay">
+        <div class="inventory-title">🎒 Инвентарь</div>
+        <div class="inventory-items" id="inventory-ui">
+            <!-- Слоты инвентаря будут заполняться здесь -->
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        Предмет добавлен в инвентарь!
+    </div>
+    <!-- /Инвентарь -->
+
+
+    <a-scene >
+        <a-sky color="#ECECEC"></a-sky>
+        <a-box position="0 -1 0" width="20" depth="20" height="0.5" color="#7D7D7D" material="" geometry=""></a-box>
+
+        <a-box
+            id="reset"
+            position="-2 1 -3" 
+            width="0.8" 
+            height="0.8" 
+            depth="0.1"
+            class="clickable"
+            color="#F54927"
+            >
+        </a-box>
+
+        <a-box
+            id="door"
+            position="-3 1.5 2.9" 
+            width="2" 
+            height="3" 
+            depth="0.1" 
+            src="../textures/door.jpg"
+            class="clickable unlock"
+            data-interactive-things="Доска-1 Доска-2 Доска-3"
+            data-inventory-items="Молоток"
+            >
+        </a-box>
+
+        <a-box
+            id="Доска-1"
+            data-name="Доска-1"
+            position="-3 1.5 2.8" 
+            width="2.2" 
+            height="0.3" 
+            depth="0.1" 
+            src="../textures/plank.jpg"
+            class="clickable interactive"
+            data-inventory-items="Молоток Молоток2"  
+            >
+        </a-box>
+
+        <a-box
+            id="Доска-2"
+            data-name="Доска-2"
+            position="-3 2 2.8" 
+            width="2.2" 
+            height="0.3" 
+            depth="0.1" 
+            src="../textures/plank.jpg"
+            class="clickable interactive"
+            data-inventory-items="Молоток Молоток2"
+            >
+        </a-box>
+
+        <a-box
+            id="Доска-3"
+            data-name="Доска-3"
+            position="-3 1 2.8" 
+            width="2.2" 
+            height="0.3" 
+            depth="0.1" 
+            src="../textures/plank.jpg"
+            class="clickable interactive"
+            data-inventory-items="Молоток Молоток2"
+            >
+        </a-box>
+
+        <a-entity 
+            id="Молоток"
+            class="collectable clickable" 
+            position="1 1 1"
+            data-icon="🔨"     
+            data-name="Молоток"    
+            animation="property: position; to: 1 1.8 1; loop: true; dir: alternate; dur: 1000" 
+            geometry="primitive: box; width: 0.8; height: 0.2; depth: 0.2"
+            material="opacity: 0.0; transparent: true"
+            >
+            <!-- Рукоятка молотка -->
+            <a-cylinder 
+                position="0 0 0"
+                radius="0.05"
+                height="0.6"
+                color="#8B4513"
+                rotation="0 0 90">
+            </a-cylinder>
+            
+            <!-- Головка молотка - основная часть -->
+            <a-box 
+                position="0.35 0 0"
+                width="0.3"
+                height="0.1"
+                depth="0.15"
+                color="#696969"
+                rotation="0 0 90">
+            </a-box>
+        </a-entity>
+
+        <a-entity
+            id="Молоток2"
+            class="collectable clickable" 
+            data-name="Молоток2"
+            position="3 1 1"
+            data-icon="🔨"         
+            animation="property: position; to: 3 1.8 1; loop: true; dir: alternate; dur: 1000" 
+            geometry="primitive: box; width: 0.8; height: 0.2; depth: 0.2"
+            material="opacity: 0.0; transparent: true"
+            >
+            <!-- Рукоятка молотка -->
+            <a-cylinder 
+                position="0 0 0"
+                radius="0.05"
+                height="0.6"
+                color="#000000"
+                rotation="0 0 90">
+            </a-cylinder>
+            
+            <!-- Головка молотка - основная часть -->
+            <a-box 
+                position="0.35 0 0"
+                width="0.3"
+                height="0.1"
+                depth="0.15"
+                color="#696969"
+                rotation="0 0 90">
+            </a-box>
+        </a-entity>
+
+
+        <!-- Чтобы можно было кликать по предметам! -->
+        <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            raycaster="objects: .clickable">
+        </a-entity>
+        <!-- /Чтобы можно было кликать по предметам! -->
+
+    </a-scene>
+
+    <!-- Кодик для инвентаря и интерактивных объектов -->
+    <script src="../scripts/inventory.js"></script>
+    <script src="../scripts/interactiveThings.js"></script>
+    <script src="../scripts/unlockThings.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script>
+        let inventorySystem;
+        let interactiveThings;
+        let notification;
+        let unlockThings;
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            notification = new Notifications();
+            inventorySystem = new InventorySystem(notification);
+            interactiveThings = new InteractiveThings(inventorySystem, notification);
+            unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+        }); 
+    </script>
+    <!-- /Кодик для инвентаря -->
+
+    <script>
+        document.getElementById('reset').addEventListener('click', () => {
+            sessionStorage.clear();
+            location.reload();
+        });
+
+
+        document.getElementById('door').addEventListener('click', (event) => {
+            if (unlockThings.checkUnlock(event.target)) {
+                sessionStorage.clear();
+                location.reload();   
+            }
+        });
+    </script>
+</body>
+</html>

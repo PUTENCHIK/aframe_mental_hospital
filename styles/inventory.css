@@ -1,0 +1,47 @@
+.ui-overlay {
+    user-select: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-width: 200px;
+}
+
+.inventory-title {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+}
+
+.inventory-items {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.inventory-slot {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #555;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.inventory-slot.filled {
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.item-icon {
+    font-size: 24px;
+}
+

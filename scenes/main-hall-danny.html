@@ -1,0 +1,260 @@
+> ChatGPT4 | Midjourney:
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+    <style>
+        .clickable {
+            cursor: pointer;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #death-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: red;
+            font-size: 3em;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #death-screen button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="death-screen">
+    <h1>СМЕРТЬ</h1>
+    <button onclick="location.reload()">ПЕРЕИГРАТЬ</button>
+</div>
+
+<a-scene fog="type: linear; color: #000000; near: 2; far: 30"
+         cursor="rayOrigin: mouse" raycaster="far: 30; objects: .collidable, .plank, .wire, .panel" >
+    <a-sky color="#000000"></a-sky>
+    <a-entity light="type: ambient; color: #111111; intensity: 0.5"></a-entity>
+    <a-sky color="#101010"></a-sky>
+
+    <a-light type="directional" intensity="0.8" position="-1 15 1" light=""></a-light>
+    <a-light type="ambient" intensity="0.5" position="0 15 0" light=""></a-light>
+
+    <a-plane id="floor" color="#CCC" height="30" width="30" position="0 0 0" rotation="-90 0 0"
+             material="color: #CCC" geometry="primitive: plane; height: 20; width: 20"></a-plane>
+    <a-box material="" geometry="primitive: box; depth: 0.5; height: 5; width: 9" position="0 2.5 9.75"
+           scale="1.00217 1 1"></a-box>
+    <a-box geometry="depth: 0.5; height: 5; width: 9" position="0 2.5 9.75" scale="1.00217 1 1" material=""
+           visible=""></a-box>
+    <a-box geometry="primitive: box; depth: 0.5; height: 5; width: 9" position="9.71442 2.5 0"
+           scale="1.00217 1 1" material="" rotation="0 90 0"></a-box>
+    <a-box geometry="depth: 0.5; height: 5; width: 9" position="9.71442 2.5 0" scale="1.00217 1 1"
+           rotation="0 90 0" material=""></a-box>
+    <a-box geometry="primitive: box; depth: 0.5; height: 5; width: 9" position="0 2.5 -9.73492" scale="1 1 1"
+           material=""></a-box>
+
+    <!--  Простая камера без ограничений NavMesh  -->
+    <a-camera camera="fov: 80; zoom: 1" position="0 1.6 0" look-controls wasd-controls="acceleration:20"></a-camera>
+
+    <a-box geometry="primitive: box; depth: 0.5; height: 2.5; width: 2" position="0 1.25 -9.49227"
+           material="color: #a88f6b" id="door-to-hall" class="collidable clickable"></a-box>
+
+    <!-- Доски, которыми заколочена дверь -->
+    <a-box id="plank1" class="plank collidable clickable" geometry="primitive: box; depth: 0.1; height: 0.2; width: 2.2"
+           position="0 1.5 -9.2" material="color: brown"></a-box>
+    <a-box id="plank2" class="plank collidable clickable" geometry="primitive: box; depth: 0.1; height: 0.2; width: 2.2"
+           position="0 1.8 -9.2" material="color: brown"></a-box>
+
+    <!-- Электрический щиток -->
+     <!-- Электрический щиток -->
+    <a-entity id="electrical-panel" position="2 1 -9.4" geometry="primitive: box; width: 0.5; height: 2; depth: 1" material="color: gray">
+        <a-entity id="panel-door-rotation" rotation="0 0 0">
+            <a-entity id="panel-door" class="panel collidable clickable" geometry="primitive: box; width: 0.5; height: 2; depth: 0.1" position="0.25 0 0.55" material="color: #555"></a-entity>
+        </a-entity>
+        <!-- Провода в щитке -->
+        <a-entity id="blue-wire" class="wire collidable clickable" visible="false"
+                  line="start: 0.15 0.65 0.6; end: -0.25 0.65 0.6; color: blue; opacity: 1"></a-entity>
+        <a-entity id="green-wire" class="wire collidable clickable" visible="false"
+                  line="start: 0.15 -0.15 0.6; end: -0.25 -0.15 0.6; color: green; opacity: 1"></a-entity>
+    </a-entity>
+
+    <!-- Обработчик событий -->
+    <a-entity id="event-handler" event-handler></a-entity>
+
+</a-scene>
+</body>
+<script>
+    AFRAME.registerComponent('event-handler', {
+        init: function () {
+            this.planks = ['plank1', 'plank2'];
+            this.doorEnabled = false;
+            this.blueWireCut = false;
+            this.panelOpen = false; // Щиток изначально закрыт
+            this.raycaster = new THREE.Raycaster();
+            this.mouse = new THREE.Vector2();
+            this.camera = document.querySelector('a-camera');
+            this.canvas = this.el.sceneEl.canvas;
+
+            this.door = document.getElementById('door-to-hall');
+            this.blueWire = document.getElementById('blue-wire');
+            this.greenWire = document.getElementById('green-wire');
+            this.deathScreen = document.getElementById('death-screen');
+            this.panelDoor = document.getElementById('panel-door'); // Дверца щитка
+            this.electricalPanel = document.getElementById('electrical-panel'); // Щиток
+
+            this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
+            this.door.addEventListener('click', this.tryGoToNextPage.bind(this));
+        },
+
+        tick: function () {
+            const rect = this.canvas.getBoundingClientRect();
+            const x = (this.mouse.x / rect.width) * 2 - 1;
+            const y = -(this.mouse.y / rect.height) * 2 + 1;
+
+            this.raycaster.setFromCamera({ x: x, y: y }, this.camera.components.camera.camera);
+
+            const intersects = this.raycaster.intersectObjects(this.el.sceneEl.object3D.children, true);
+
+            if (intersects.length > 0) {
+                const intersectedObject = intersects[0].object.el;
+                if (intersectedObject.classList.contains('plank')) {
+                    intersectedObject.setAttribute('material', 'color', 'red');
+                } else if (intersectedObject.classList.contains('wire')) {
+                    intersectedObject.setAttribute('material', 'color', 'red');
+                } else if (intersectedObject.classList.contains('panel')) {
+                    intersectedObject.setAttribute('material', 'color', 'red');
+                } else {
+                    this.planks.forEach(plankId => {
+                        const plank = document.getElementById(plankId);
+                        if (plank) {
+                            plank.setAttribute('material', 'color', 'brown');
+                        }
+                    });
+                    if (this.blueWire) {
+                        this.blueWire.setAttribute('material', 'color', 'blue');
+                    }
+                    if (this.greenWire) {
+                        this.greenWire.setAttribute('material', 'color', 'green');
+                    }
+                    this.panelDoor.setAttribute('material', 'color', '#555');
+                }
+            } else {
+                this.planks.forEach(plankId => {
+                    const plank = document.getElementById(plankId);
+                    if (plank) {
+                        plank.setAttribute('material', 'color', 'brown');
+                    }
+                });
+                if (this.blueWire) {
+                    this.blueWire.setAttribute('material', 'color', 'blue');
+                }
+                 if (this.greenWire) {
+                    this.greenWire.setAttribute('material', 'color', 'green');
+                }
+                this.panelDoor.setAttribute('material', 'color', '#555');
+            }
+        },
+
+        onMouseDown: function (event) {
+            this.mouse.x = event.clientX;
+            this.mouse.y = event.clientY;
+
+            const rect = this.canvas.getBoundingClientRect();
+            const x = (this.mouse.x - rect.left) / rect.width * 2 - 1;
+            const y = -((this.mouse.y - rect.top) / rect.height) * 2 + 1;
+
+            this.raycaster.setFromCamera({ x: x, y: y }, this.camera.components.camera.camera);
+
+            const intersects = this.raycaster.intersectObjects(this.el.sceneEl.object3D.children, true);
+
+            if (intersects.length > 0) {
+                const intersectedObject = intersects[0].object.el;
+                if (intersectedObject.classList.contains('plank')) {
+                    this.removePlank(intersectedObject.id);
+                } else if (intersectedObject.id === 'blue-wire' && this.panelOpen) {
+                    this.cutBlueWire();
+                } else if (intersectedObject.id === 'green-wire' && this.panelOpen) {
+                    this.die();
+                } else if (intersectedObject.id === 'panel-door') {
+                    this.togglePanel();
+                }
+            }
+        },
+
+        removePlank: function (plankId) {
+            const plank = document.getElementById(plankId);
+            if (plank) {
+                plank.setAttribute('animation', {
+                    property: 'rotation',
+                    to: '90 0 0',
+                    dur: 500,
+                    easing: 'easeOutQuad'
+                });
+
+                setTimeout(() => {
+                    plank.parentNode.removeChild(plank);
+                    this.planks = this.planks.filter(id => id !== plankId);
+                    if (this.planks.length === 0) {
+                        this.enableDoor();
+                    }
+                }, 500);
+            }
+        },
+
+        togglePanel: function () {
+            this.panelOpen = !this.panelOpen;
+            const blueWire = document.getElementById('blue-wire');
+            const greenWire = document.getElementById('green-wire');
+            if (this.panelOpen) {
+                this.panelDoor.setAttribute('rotation', '0 90 0');
+                blueWire.setAttribute('visible', true);
+                greenWire.setAttribute('visible', true);
+            } else {
+                this.panelDoor.setAttribute('rotation', '0 0 0');
+                 blueWire.setAttribute('visible', false);
+                greenWire.setAttribute('visible', false);
+            }
+        },
+
+        cutBlueWire: function () {
+            this.blueWireCut = true;
+            this.blueWire.setAttribute('visible', false);
+            this.enableDoor();
+            console.log('Blue wire cut!');
+        },
+
+        enableDoor: function () {
+            this.doorEnabled = true;
+            this.door.setAttribute('material', 'color', 'green');
+            console.log('Door is now enabled!');
+        },
+
+        tryGoToNextPage: function () {
+            if (this.doorEnabled && this.blueWireCut) {
+                window.location.href = 'next_page.html';
+            } else {
+                this.die();
+            }
+        },
+
+        die: function () {
+            this.deathScreen.style.display = "flex";
+        }
+    });
+</script>
+</html>
