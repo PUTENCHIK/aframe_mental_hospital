@@ -8,7 +8,7 @@
             // Smooth movement back when collision occurs
             smoothRecovery: {default: true},
             // How far to push back from collision
-            pushBackDistance: {default: 0.1}
+            pushBackDistance: {default: 0}
         },
 
         init: function() {
