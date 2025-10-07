@@ -36,7 +36,6 @@ class InteractiveThings {
                 let success = true;
                 let neededItem = "";
                 let itemForInteractive;
-                debugger
                 items.forEach(item => {
                     itemForInteractive = Object.values(this.inventorySystem.inventory).find((packItem) => packItem.name == item)
                     
@@ -50,7 +49,13 @@ class InteractiveThings {
                 if (success) {
                     const thingName = target.getAttribute('data-name'); 
                     this.addThing(thingName)
-                    target.parentNode.removeChild(target);
+                    target.emit('use');
+                    setTimeout(() => {
+                        if (target.parentNode) {
+                            target.parentNode.removeChild(target);
+                        }
+                    }, 2000);
+                    
                 }
                 else {
                     this.notification.showNotification(`Вам нужен: ${neededItem}`);
