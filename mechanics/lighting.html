@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Освещение и камера</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+
+    <!-- И сцену тоже -->
+    <a-scene fog="type: linear; color: #000000; near: 2; far: 8">
+
+        <!-- Для освещения и камеры -->
+        <a-sky color="#000000"></a-sky>
+        <a-entity light="type: ambient; color: #111111; intensity: 0.5" ></a-entity>
+        
+        <a-entity id="cameraRig" position="0 1.6 0">
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration:20">
+            <a-entity id="headLight"
+                        light="type: point; color: #ffffff; intensity: 1; distance: 2; decay: 1">
+            </a-entity>
+            </a-entity>
+        </a-entity>
+
+        <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            raycaster="objects: .clickable">
+        </a-entity>
+        <!-- /Для освещения и камеры -->
+
+
+        <a-box position="0 1 0" width="20" depth="20" height="0.5" color="#7D7D7D" material="metalness:0; roughness:1" geometry=""></a-box>
+    </a-scene>
+</body>
+</html>

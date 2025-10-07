@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Молоток</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene >
+        <a-sky color="#ECECEC"></a-sky>
+        <a-box position="0 -1 0" width="20" depth="20" height="0.5" color="#7D7D7D" material="" geometry=""></a-box>
+        <a-box
+            id="door"
+            position="-3 1.5 2.9" 
+            width="2" 
+            height="3" 
+            depth="0.1" 
+            src="../textures/door.jpg"
+            class="collision"
+            >
+        </a-box>
+
+        <a-box 
+            position="-4.89647 2 -3" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall.jpg" 
+            material="" 
+            geometry="" 
+            rotation="0 90 0"
+            class="collision">
+        </a-box>
+
+        <a-entity id="cameraRig" position="0 1.6 0">
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision>
+
+            </a-entity>
+        </a-entity>
+    </a-scene>
+    <script src="../scripts/reset-on-collision.js"></script>   
+</body>
+</html>

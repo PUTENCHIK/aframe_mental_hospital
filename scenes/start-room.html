@@ -4,22 +4,8 @@
     <meta charset="utf-8">
     <title>Стартовая Комната</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <link rel="stylesheet" href="../styles/inventory.css">
 </head>
 <body>
-
-    <!-- Инвентарь -->
-    <div class="ui-overlay">
-        <div class="inventory-title">🎒 Инвентарь</div>
-        <div class="inventory-items" id="inventory-ui">
-            <!-- Слоты инвентаря будут заполняться здесь -->
-        </div>
-    </div>
-    
-    <div class="notification" id="notification">
-        Предмет добавлен в инвентарь!
-    </div>
-
 
     <a-scene fog="type: linear; color: #000000; near: 2; far: 8">
         <a-sky color="#000000"></a-sky>
@@ -99,23 +85,23 @@
             >
         </a-box>
 
-        <a-box 
+        <a-box
             position="-3 2 3" 
             width="4" 
             height="4" 
             depth="0.1" 
             src="../textures/wall.jpg"
+            
             >
         </a-box>
 
         <a-box
-            id="main-hall"
-            position="-3 1.5 2.9" 
+            position="-3 1.5 2" 
             width="2" 
             height="3" 
             depth="0.1" 
             src="../textures/door.jpg"
-            class="clickable"
+            class="clickable collision"
             >
         </a-box>
 
@@ -180,13 +166,15 @@
         material="metalness:0; roughness:1"></a-plane>
    
         <!-- Окно -->
-        <a-box 
+        <a-box
             position="-4.8 2 0" 
             width="0.01" 
             height="2" 
             depth="3" 
             color="#87CEEB"
-            src="../textures/window.jpg">
+            src="../textures/window.jpg"
+            class="collision">
+            
         </a-box>
         
         <!-- Дверь -->
@@ -200,7 +188,6 @@
         
         <!-- Мебель: стол -->
        <a-box
-            id="table"
             position="0 1 0" 
             width="2" 
             height="0.05" 
@@ -296,13 +283,13 @@
         
         <!-- Камера -->
         <a-entity id="cameraRig" position="0 1.6 0">
-            <a-entity id="camera" camera look-controls wasd-controls>
-            <!-- point light: светит во все стороны вокруг камеры, ограничен distance -->
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision="with: .collision">
             <a-entity id="headLight"
                         light="type: point; color: #ffffff; intensity: 1; distance: 2; decay: 1">
             </a-entity>
             </a-entity>
         </a-entity>
+
 
         <a-entity
             cursor="fuse: false; rayOrigin: mouse"
@@ -356,29 +343,7 @@
             </a-box>
         </a-entity>
 
-
-
-        <!-- Кодик для инвентаря -->
-        <script src="../scripts/inventory.js"></script>
-        <script>
-            let inventorySystem;
-
-            document.querySelector('a-scene').addEventListener('loaded', function() {
-                inventorySystem = new InventorySystem();
-            }); 
-        </script>
-        <!-- /Кодик для инвентаря -->
-
-        <script>
-            document.querySelector('#main-hall').addEventListener('click', () => {
-                window.location.href = 'main-hall.html';
-            });
-
-            document.querySelector('#table').addEventListener('click', () => {
-                console.log(InventorySystem.inventory)
-                console.log(InventorySystem.hasItem("potion"))
-            });
-        </script>
     </a-scene>
+    <script src="../scripts/reset-on-collision.js"></script>
 </body>
 </html>
