@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Модели</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+</head>
+
+<body>
+
+    <a-scene>
+        <a-sky color="#ECECEC"></a-sky>
+        <a-box position="0 -1 0" width="20" depth="20" height="0.5" color="#7D7D7D" material="" geometry=""></a-box>
+
+        <!-- Загрузка моделей объектов -->
+        <a-assets>
+            <a-asset-item id="default_table" src="../models/default_table.glb"></a-asset-item>
+            <a-asset-item id="default_chair" src="../models/default_chair.glb"></a-asset-item>
+            <a-asset-item id="hammer" src="../models/hammer.glb"></a-asset-item>
+            <a-asset-item id="screwdriver" src="../models/screwdriver.glb"></a-asset-item>
+            <a-asset-item id="nippers" src="../models/nippers.glb"></a-asset-item>
+            <a-asset-item id="gold_key" src="../models/gold_key.glb"></a-asset-item>
+            <a-asset-item id="silver_key" src="../models/silver_key.glb"></a-asset-item>
+        </a-assets>
+
+        <!-- Модели для демонстрации -->
+        <a-gltf-model src="#default_table" position="0 0.2 0" class="collision">
+        </a-gltf-model>
+
+        <a-gltf-model src="#default_chair" position="2 0.2 0" class="collision" rotation="0 90 0">
+        </a-gltf-model>
+
+        <a-gltf-model src="#hammer" position="-0.9 1.5 0" class="collision">
+        </a-gltf-model>
+
+        <a-gltf-model src="#screwdriver" position="-0.6 1.5 0" class="collision">
+        </a-gltf-model>
+
+        <a-gltf-model src="#nippers" position="-0.3 1.5 0" class="collision">
+        </a-gltf-model>
+
+        <a-gltf-model src="#gold_key" position="0 1.5 0" class="collision">
+        </a-gltf-model>
+
+        <a-gltf-model src="#silver_key" position="0.2 1.5 0" class="collision">
+        </a-gltf-model>
+    </a-scene>
+</body>
+
+</html>
