@@ -7,9 +7,9 @@
 </head>
 <body>
 
-    <a-scene fog="type: linear; color: #000000; near: 2; far: 8">
+    <a-scene fog="type: linear; color: #000000; near: 1; far: 6">
         <a-sky color="#000000"></a-sky>
-        <a-entity light="type: ambient; color: #111111; intensity: 0.5"></a-entity>
+        <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity>
     
         
         <a-box 
@@ -18,6 +18,7 @@
             height="4" 
             depth="0.1" 
             src="../textures/wall.jpg"
+            class="collision"
             >
         </a-box>
 
@@ -27,6 +28,7 @@
             height="4" 
             depth="0.1" 
             src="../textures/wall.jpg"
+            class="collision"
             >
         </a-box>
 
@@ -38,7 +40,9 @@
             src="../textures/wall.jpg" 
             material="" 
             geometry="" 
-            rotation="0 90 0">
+            rotation="0 90 0"
+            class="collision"
+            >
         </a-box>
 
 
@@ -50,7 +54,8 @@
             src="../textures/wall.jpg" 
             material="" 
             geometry="" 
-            rotation="0 90 0">
+            rotation="0 90 0"
+            class="collision">
         </a-box>
         
         <a-box 
@@ -61,7 +66,8 @@
             src="../textures/wall.jpg" 
             material="" 
             geometry="" 
-            rotation="0 90 0">
+            rotation="0 90 0"
+            class="collision">
         </a-box>
 
 
@@ -73,7 +79,8 @@
             src="../textures/wall.jpg" 
             material="" 
             geometry="" 
-            rotation="0 90 0">
+            rotation="0 90 0"
+            class="collision">
         </a-box>
         
          <a-box 
@@ -82,6 +89,7 @@
             height="4" 
             depth="0.1" 
             src="../textures/wall.jpg"
+            class="collision"
             >
         </a-box>
 
@@ -91,15 +99,16 @@
             height="4" 
             depth="0.1" 
             src="../textures/wall.jpg"
-            
+            class="collision"
             >
         </a-box>
 
         <a-box
-            position="-3 1.5 2" 
-            width="2" 
-            height="3" 
-            depth="0.1" 
+            position="-3 1.4 2.9" 
+            width="1.9" 
+            height="2.7" 
+            depth="0.1"
+            id="to-coridor"
             src="../textures/door.jpg"
             class="clickable collision"
             >
@@ -165,10 +174,11 @@
         <a-plane position="-4 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
         material="metalness:0; roughness:1"></a-plane>
    
+
         <!-- Окно -->
         <a-box
-            position="-4.8 2 0" 
-            width="0.01" 
+            position="-4.82 2 0" 
+            width="0.1" 
             height="2" 
             depth="3" 
             color="#87CEEB"
@@ -176,107 +186,12 @@
             class="collision">
             
         </a-box>
-        
-        <!-- Мебель: стол -->
-       <a-box
-            position="0 1 0" 
-            width="2" 
-            height="0.05" 
-            depth="1" 
-            color="#654321"
-            class="clickable">
-        </a-box> 
-        
-        <!-- Ножки стола -->
-        <a-box 
-            position="-0.9 0.5 0.4" 
-            width="0.1" 
-            height="1" 
-            depth="0.1" 
-            color="#654321">
-        </a-box>
-        <a-box 
-            position="0.9 0.5 0.4" 
-            width="0.1" 
-            height="1" 
-            depth="0.1" 
-            color="#654321">
-        </a-box>
-        <a-box 
-            position="-0.9 0.5 -0.4" 
-            width="0.1" 
-            height="1" 
-            depth="0.1" 
-            color="#654321">
-        </a-box>
-        <a-box 
-            position="0.9 0.5 -0.4" 
-            width="0.1" 
-            height="1" 
-            depth="0.1" 
-            color="#654321">
-        </a-box>
-        
-        <!-- Стул -->
-        <a-box 
-            position="1.5 0.5 0" 
-            width="0.5" 
-            height="0.05" 
-            depth="0.5" 
-            color="#654321">
-        </a-box>
-        
-        <!-- Ножки стула -->
-        <a-box 
-            position="1.25 0.25 0.2" 
-            width="0.05" 
-            height="0.5" 
-            depth="0.05" 
-            color="#654321">
-        </a-box>
-        <a-box 
-            position="1.75 0.25 0.2" 
-            width="0.05" 
-            height="0.5" 
-            depth="0.05" 
-            color="#654321">
-        </a-box>
-        <a-box 
-            position="1.25 0.25 -0.2" 
-            width="0.05" 
-            height="0.5" 
-            depth="0.05" 
-            color="#654321">
-        </a-box>
-        <a-box 
-            position="1.75 0.25 -0.2" 
-            width="0.05" 
-            height="0.5" 
-            depth="0.05" 
-            color="#654321">
-        </a-box>
-        
-        <!-- Спинка стула -->
-        <a-box 
-            position="1.5 0.8 0.25" 
-            width="0.5" 
-            height="0.8" 
-            depth="0.05" 
-            color="#654321">
-        </a-box>
-        
-        <!-- Источник света -->
-        <a-light 
-            type="point" 
-            position="0 2 0" 
-            intensity="0.8">
-        </a-light>
-        
+    
         <!-- Камера -->
         <a-entity id="cameraRig" position="0 1.6 0">
             <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision="with: .collision">
             <a-entity id="headLight"
-                        light="type: point; color: #ffffff; intensity: 1; distance: 2; decay: 1">
+                        light="type: point; color: #ffffff; intensity: 1; distance: 4; decay: 1">
             </a-entity>
             </a-entity>
         </a-entity>
@@ -288,53 +203,96 @@
         </a-entity>
 
 
-        <a-box 
-            id="key" 
-            class="collectable clickable"
-            data-item="key"
-            data-name="Золотой ключ"
-            data-icon="🔑"
-            position="0 1.5 0" 
-            width="0.2" 
-            height="0.2" 
-            depth="0.2" 
-            color="#FFD700"
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 2000">
+        <!-- Стул -->
+        <a-entity
+            gltf-model="../models/default_chair.glb"
+            position="0 0.5 1"
+            scale="0.8 0.8 0.8"
+            rotation="0 180 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Стул -->
+        <a-entity
+            gltf-model="../models/default_chair.glb"
+            position="2 0.5 1.5"
+            scale="0.8 0.8 0.8"
+            rotation="0 90 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Стол -->
+        <a-entity
+            gltf-model="../models/default_table.glb"
+            position="0 0.5 2"
+            scale="0.8 0.8 0.8"
+            rotation="0 0 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Кровать -->
+        <a-entity
+            gltf-model="../models/hospital_bed.glb"
+            position="1.4 0 -4"
+            scale="0.015 0.015 0.015"
+            rotation="0 180 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Шкаф -->
+        <a-entity
+            gltf-model="../models/closet.glb"
+            position="-3 2 -4.35"
+            scale="2 2 2"
+            rotation="0 -90 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Картина -->
+        <a-entity
+            gltf-model="../models/wall_picture.glb"
+            position="2.9 2 -0.4"
+            scale="1 1 1"
+            rotation="0 -90 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Картина маньякича -->
+        <a-entity
+            gltf-model="../models/wall_picture.glb"
+            position="0 2 2.93"
+            scale="1 1 1"
+            rotation="0 180 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Картина маньякича фото -->
+        <a-box
+            position="0 2 2.92" 
+            width="0.01" 
+            height="1.10" 
+            depth="1.75" 
+            color="#87CEEB"
+            src="../textures/doctor.png"
+            class="collision"
+            rotation="0 90 0">
+            
         </a-box>
 
-
-        <a-entity 
-            class="collectable clickable" 
-            id="hammer" 
-            position="1 1 1"
-            data-item="hammer"
-            data-name="Молоток"
-            data-icon="🔨"         
-            animation="property: position; to: 1 1.8 1; loop: true; dir: alternate; dur: 1000" 
-            geometry="primitive: box; width: 0.8; height: 0.2; depth: 0.2"
-            material="opacity: 0.0; transparent: true"
-            >
-            <!-- Рукоятка молотка -->
-            <a-cylinder 
-                position="0 0 0"
-                radius="0.05"
-                height="0.6"
-                color="#8B4513"
-                rotation="0 0 90">
-            </a-cylinder>
-            
-            <!-- Головка молотка - основная часть -->
-            <a-box 
-                position="0.35 0 0"
-                width="0.3"
-                height="0.1"
-                depth="0.15"
-                color="#696969"
-                rotation="0 0 90">
-            </a-box>
+        <!-- Кровь -->
+        <a-entity
+            gltf-model="../models/blood.glb"
+            position="1.6 0 -2"
+            scale="0.1 0.1 0.1"
+            rotation="0 -90 0">
         </a-entity>
 
     </a-scene>
     <script src="../scripts/reset-on-collision.js"></script>
+    <script>
+        document.getElementById('to-coridor').addEventListener('click', (event) => {
+            window.location.replace("./coridor.html");
+        });
+    </script>
 </body>
 </html>

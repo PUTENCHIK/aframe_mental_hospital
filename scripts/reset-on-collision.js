@@ -8,7 +8,7 @@
             // Smooth movement back when collision occurs
             smoothRecovery: {default: true},
             // How far to push back from collision
-            pushBackDistance: {default: 0}
+            pushBackDistance: {default: 0.05}
         },
 
         init: function() {
@@ -21,7 +21,7 @@
             
             this.lastKnownGoodPosition = new THREE.Vector3().copy(this.el.object3D.position);
             this.isColliding = false;
-            this.collisionRecoverySpeed = 0.3;
+            this.collisionRecoverySpeed = 0.5;
         },
 
         tick: function () {
