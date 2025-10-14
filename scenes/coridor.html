@@ -5,125 +5,199 @@
     </head>
     <body>
         <a-scene>
+        <!--Текстуры-->
+        <a-assets>
+            <img id="barTexture" src="../textures/metal.jpg">
+            <img id="prisonTexture" src="../textures/prison-wall.png">
+            <img id="wallTexture" src="../textures/wall.jpg">
+            <img id="cellFloorTexture" src="../textures/basement-floor.png">
+            <img id="floorTexture" src="../textures/floor.jpg">
+        </a-assets>
       <!-- Пол -->
-<a-box position="0 -1 0" width="40" depth="20" height="0.5" color="#7D7D7D" material="" geometry=""></a-box>
+<a-box position="16.26985 -1 -2.45394" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="src: #floorTexture" geometry="depth: 6; width: 6" rotation="0 90 0"></a-box>
+<a-box position="10.28249 -1 -2.45394" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="src: #floorTexture" geometry="depth: 6; width: 6" rotation="0 90 0"></a-box>
+<a-box position="4.28836 -1 -2.45394" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="src: #floorTexture" geometry="depth: 6; width: 6" rotation="0 90 0"></a-box>
+<a-box position="-1.70175 -1 -2.45394" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="src: #floorTexture" geometry="depth: 6; width: 6" rotation="0 90 0"></a-box>
+<a-box position="-0.9139 -1 3.52623" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="src: #floorTexture" geometry="depth: 6; width: 6" rotation="0 90 0"></a-box>
+<a-box position="-0.9139 -1 9.50328" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="src: #floorTexture" geometry="depth: 6; width: 6" rotation="0 90 0"></a-box>
+<a-box position="-6.90147 -1 7.18858" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="src: #floorTexture" geometry="depth: 6; width: 6" rotation="0 90 0"></a-box>
+<a-box position="-9.76883 0.9692 7.29485" width="1.9" height="2.7" depth="0.1" id="to-main-hall" src="../textures/door.jpg" class="clickable collision" rotation="0 90 0" scale="1.1 1.3 1"></a-box>
+<a-box position="-6.88365 0.9692 9.70454" width="1.9" height="2.7" depth="0.1" id="to-treatment-room" src="../textures/door.jpg" class="clickable collision" scale="1.1 1.3 1"></a-box>
+
+        <!--Потолок-->
+        <a-plane position="0.83771 4 -0.13096" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+        <a-plane position="0.88024 4 -7.67896" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+        <a-plane position="0.83659 4 7.8403" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+        <a-plane position="-7.12495 4 7.84883" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+        <a-plane position="8.78872 4 -6.13634" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+        <a-plane position="8.78872 4 1.80082" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+        <a-plane position="16.66183 4 1.80082" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+        <a-plane position="16.66183 4 -6.14836" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/roof.jpg" material="roughness: 1"></a-plane>
+
 
 <!--Нижнее крыло-->
-<a-box position="-3.96499 1 9.86998" width="20" depth="4" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 39; segmentsWidth: 5" scale="0.311 0.875 0.112"></a-box>
-<a-box position="-6.4397 1 4.78739" width="20" depth="4" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 22.5; segmentsWidth: 5" scale="0.311 0.875 0.112"></a-box>
-<a-box position="-9.90881 1 7.33946" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 17" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="1.91188 1 4.99802" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 32" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
+<a-box position="-3.96499 1.54649 9.86998" width="20" depth="4" height="4" geometry="depth: 2; height: 5.73; width: 39; segmentsWidth: 5" scale="0.311 0.875 0.112" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="-6.4397 1.54649 4.78739" width="20" depth="4" height="4" geometry="depth: 2; height: 5.73; width: 22.5; segmentsWidth: 5" scale="0.311 0.875 0.112" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="-9.90881 1.54649 7.33946" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 17" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="1.91188 1.54649 4.99802" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 32" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #wallTexture"></a-box>
 
 <!--Центральный коридор-->
-<a-box position="-3.04394 1 -0.10926" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 32" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="0.25674 1 -5" width="20" depth="4" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 22; segmentsWidth: 5" scale="0.311 0.875 0.112"></a-box>
-<a-box position="2.81216 1 0.13978" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 5.5" scale="0.311 0.875 0.112"></a-box>
+<a-box position="-3.04394 1.54649 -0.10926" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 32" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="0.25674 1.54649 -5" width="20" depth="4" height="4" geometry="depth: 2; height: 5.73; width: 22; segmentsWidth: 5" scale="0.311 0.875 0.112" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="2.81216 1.54649 0.13978" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 5.5" scale="0.311 0.875 0.112" class="collision"  material="src: #wallTexture"></a-box>
 
+<a-entity gltf-model="../models/wall_picture.glb" position="-2.92273 2.09301 2.08166" rotation="0 90 90" class="collision"></a-entity>
+<a-box position="1.7866 2.07117 2.24804" width="0.01" height="1.10" depth="1.75" color="#87CEEB" src="../textures/creepy_painting_1.jpg" class="collision" rotation="0 180 0" geometry="depth: 1.2; height: 1.8"></a-box>
+<a-entity gltf-model="../models/wall_picture.glb" position="1.78193 2.09301 2.27029" rotation="0 270 90" class="collision"></a-entity>
+<a-box position="1.7866 2.07117 6.88633" width="0.01" height="1.10" depth="1.75" color="#87CEEB" src="../textures/creepy_painting_2.jpg" class="collision" rotation="0 180 0" geometry="depth: 1.2; height: 1.8"></a-box>
+<a-entity gltf-model="../models/wall_picture.glb" position="1.78193 2.09301 6.89087" rotation="0 270 90" class="collision"></a-entity>
+<a-box position="-2.92184 2.07117 2.09955" width="0.01" height="1.10" depth="1.75" color="#87CEEB" src="../textures/creepy_painting_3.jpg" class="collision" rotation="0 180 0" geometry="depth: 1.2; height: 1.8"></a-box>
 <!--Верхнее крыло с тюрьмой-->
 
+<a-box position="-2.84684 0.9692 -2.27336" width="1.9" height="2.7" depth="0.1" id="to-bathroom" src="../textures/door.jpg" class="clickable collision" rotation="0 90 0" scale="1.1 1.3 1"></a-box>
+
 <!--Клетка 1-->
-<a-box position="3.53835 1.64821 -6.78037" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 5.5; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="5.74263 1 -8.54086" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="7.93911 1 -6.76802" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="5.71093 -1.10176 -5.00709" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="5.75791 3.93449 -5.00946" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112"></a-box>
+<a-box position="3.53835 1.64821 -6.78037" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="5.74263 1.58705 -8.54086" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="7.93911 1.58705 -6.76802" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="5.71093 -1.10176 -5.00709" width="4" depth="8" height="4"  geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="5.75791 3.93449 -5.00946" width="4" depth="8" height="4" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="5.76628 -0.99 -6.82122" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="alphaTest: 1; shader: standard; color: #FFF; src: #cellFloorTexture" geometry="depth: 3.8; width: 4.22"></a-box>
+<a-entity gltf-model="../models/shackles.glb" position="6.37052 0.21386 -8.28294" scale="0.012 0.012 0.012" rotation="0 180 0" class="collision"></a-entity>
 <!--решетка-->
-<a-box position="7.511 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="7.011 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="6.511 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="6.011 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="5.511 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="5.011 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="4.511 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="4.011 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
+<a-box position="7.511 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="7.011 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="6.511 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="6.011 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="5.511 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="5.011 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="4.511 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="4.011 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
 
 <!--Клетка 2-->
-<a-box position="10.17225 1 -8.54086" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="12.38038 1 -6.76416" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="10.14846 -1.10176 -5.00709" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="10.12859 3.93449 -5.00946" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112"></a-box>
+<a-box position="10.17225 1.58705 -8.54086" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="12.38038 1.58705 -6.76416" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="10.14846 -1.10176 -5.00709" width="4" depth="8" height="4" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="10.12859 3.93449 -5.00946" width="4" depth="8" height="4" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="10.14656 -0.99 -6.82122" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="alphaTest: 1; shader: standard; color: #FFF; src: #cellFloorTexture" geometry="depth: 3.8; width: 4.25"></a-box>
+<a-entity gltf-model="../models/skeleton.glb" position="9.63193 -0.25459 -7.74849" scale="35 35 35" rotation="0 27.090590469375584 0" class="collision"></a-entity>
+<a-entity gltf-model="../models/shackles.glb" position="10.88682 0.21386 -8.28294" scale="0.012 0.012 0.012" rotation="0 180 0" class="collision"></a-entity>
 <!--решетка-->
-<a-box position="11.912 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="11.412 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="10.912 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="10.412 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="9.91214 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="9.409 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="8.909 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="8.40906 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
+<a-box position="11.912 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="11.412 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="10.912 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="10.412 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="9.91214 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="9.409 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="8.909 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="8.40906 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
 
 <!--Клетка 3-->
-<a-box position="14.60987 1 -8.54086" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="16.83082 1 -6.78942" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="14.61623 -1.10176 -5.00709" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="14.57951 3.93449 -5.00946" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112"></a-box>
+<a-box position="14.60987 1.58705 -8.54086" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="16.83082 1.58705 -6.78942" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="14.61623 -1.10176 -5.00709" width="4" depth="8" height="4" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="14.57951 3.93449 -5.00946" width="4" depth="8" height="4" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="14.59927 -0.99 -6.82122" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="alphaTest: 1; shader: standard; color: #FFF; src: #cellFloorTexture" geometry="depth: 3.8; width: 4.25"></a-box>
+<a-entity gltf-model="../models/shackles.glb" position="15.3118 0.21386 -8.28294" scale="0.012 0.012 0.012" rotation="0 180 0" class="collision"></a-entity>
 <!--решетка-->
-<a-box position="16.326 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="15.826 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="15.326 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="14.816 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="14.316 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="13.816 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="13.316 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="12.81554 1.58705 -5.02041" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
+<a-box position="16.326 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="15.826 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="15.326 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="14.816 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="14.316 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="13.816 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="13.316 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="12.81554 1.58705 -5.02041" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
 
 <!--Конец коридора в начальную локацию-->
-<a-box position="17.95835 1 -5.0124" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 8" scale="0.311 0.875 0.112"></a-box>
-<a-box position="19.04647 1 -2.4019" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 17" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="17.95835 1 0.1663" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 8" scale="0.311 0.875 0.112"></a-box>
+<a-box position="17.95835 1.54649 -5.0124" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 8" scale="0.311 0.875 0.112" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="19.04647 1.54649 -2.4019" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 17" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="17.95835 1.54649 0.1663" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 8" scale="0.311 0.875 0.112" class="collision"  material="src: #wallTexture"></a-box>
+<a-box position="18.88811 0.9692 -2.34444" width="1.9" height="2.7" depth="0.1" id="to-start-room" src="../textures/door.jpg" class="clickable collision" rotation="0 90 0" scale="1.1 1.3 1"></a-box>
 
 <!--Клетка 6-->
-<a-box position="16.83082 1 1.94122" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="14.60987 1 3.70451" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="12.38038 1 1.91701" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="14.61623 -1.10176 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="14.57384 3.93449 0.14307" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112"></a-box>
+<a-box position="16.83082 1.58705 1.94122" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="14.60987 1.58705 3.70451" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="12.38038 1.58705 1.91701" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="14.61623 -1.10176 0.14887" width="4" depth="8" height="4" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="14.57384 3.93449 0.14307" width="4" depth="8" height="4" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="14.59927 -0.99 1.91555" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="alphaTest: 1; shader: standard; color: #FFF; src: #cellFloorTexture" geometry="depth: 3.8; width: 4.25" rotation="0 180 0"></a-box>
+<a-entity gltf-model="../models/skeleton.glb" position="16.19866 -0.25459 2.76221" scale="35 35 35" rotation="0 -119.42445802809314 0" class="collision"></a-entity>
+<a-entity gltf-model="../models/shackles.glb" position="13.9983 0.21386 3.45257" scale="0.012 0.012 0.012" class="collision"></a-entity>
 <!--решетка-->
-<a-box position="16.31 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="15.81 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="15.31 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="14.81 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="14.31 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="13.81 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="13.32 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="12.81 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
+<a-box position="16.31 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="15.81 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="15.31 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="14.81 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="14.31 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="13.81 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="13.32 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="12.81 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
 
 <!--Клетка 5-->
-<a-box position="10.17225 1 3.70971" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="7.93911 1 1.89326" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="10.17535 -1.10176 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="10.13091 3.93449 0.14307" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112"></a-box>
+<a-box position="10.17225 1.58705 3.70971" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="7.93911 1.58705 1.89326" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="10.17535 -1.10176 0.14887" width="4" depth="8" height="4" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="10.13091 3.93449 0.14307" width="4" depth="8" height="4" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="10.15864 -0.99 1.91555" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="alphaTest: 1; shader: standard; color: #FFF; src: #cellFloorTexture" geometry="depth: 3.8; width: 4.3" rotation="0 180 0"></a-box>
+<a-entity gltf-model="../models/shackles.glb" position="9.49803 0.21386 3.45257" scale="0.012 0.012 0.012" class="collision"></a-entity>
 <!--решетка-->
-<a-box position="11.91347 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="11.413 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="10.913 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="10.413 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="9.913 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="9.413 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="8.913 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="8.403 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
+<a-box position="11.91347 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="11.413 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="10.913 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="10.413 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="9.913 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="9.413 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="8.913 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="8.403 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
 
 <!--Клетка 4-->
-<a-box position="5.74263 1 3.71022" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="3.55004 1 1.90179" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 7; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0"></a-box>
-<a-box position="5.74428 -1.10176 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112"></a-box>
-<a-box position="5.75791 3.93449 0.14307" width="4" depth="8" height="4" color="#8B4513" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112"></a-box>
+<a-box position="5.74263 1.58705 3.71022" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="3.55004 1.58705 1.90179" width="4" depth="8" height="4" geometry="depth: 2; height: 5.73; width: 12" scale="0.311 0.875 0.112" rotation="0 90 0" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="5.74428 -1.10176 0.14887" width="4" depth="8" height="4" geometry="depth: 2; height: 1; width: 15" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="5.75791 3.93449 0.14307" width="4" depth="8" height="4" geometry="depth: 2; height: 0.3; width: 14" scale="0.311 0.875 0.112" class="collision"  material="src: #prisonTexture"></a-box>
+<a-box position="5.67272 -0.99 1.91555" width="40" depth="20" height="0.5" color="#7D7D7D" class="collision" material="alphaTest: 1; shader: standard; color: #FFF; src: #cellFloorTexture" geometry="depth: 3.8; width: 4.3" rotation="0 180 0"></a-box>
+<a-entity gltf-model="../models/skeleton.glb" position="4.43516 -0.25459 2.90012" scale="35 35 35" rotation="0 154.96789484903374 0" class="collision"></a-entity>
+<a-entity gltf-model="../models/shackles.glb" position="5.03098 0.21386 3.45257" scale="0.012 0.012 0.012" class="collision"></a-entity>
 <!--решетка-->
-<a-box position="7.51071 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="7.011 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="6.511 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="6.011 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="5.511 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="5.011 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="4.511 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
-<a-box position="4.011 1.58705 0.14887" width="4" depth="8" height="4" color="#8B4513" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" material="color: #c0c0c0"></a-box>
+<a-box position="7.51071 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="7.011 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="6.511 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="6.011 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="5.511 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="5.011 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="4.511 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
+<a-box position="4.011 1.58705 0.14887" width="4" depth="8" height="4" geometry="primitive: cylinder; radius: 0.09; segmentsRadial: 18" scale="1.19134 1.19134 1.19134" class="collision"  material="src: #barTexture"></a-box>
 
-      <a-light type="ambient" color="#445" light=""></a-light>
-      <a-light type="directional" position="0 10 0" intensity="0.5" light=""></a-light>
+        <!-- Камера -->       
+        <a-entity id="cameraRig" position="0 1.6 0">
+            <a-entity id="camera" camera="" look-controls="" wasd-controls="acceleration: 20" reset-on-collision="colliderSize: 1" position="25.87963 0 -2.23233" geometry="depth: 0.5; height: 0.5; width: 0.5">
+                <a-entity id="headLight" light="color: #ffffff; distance: 7; intensity: 1; type: point"></a-entity>
+            </a-entity>
+        </a-entity>
 
-      <!-- Камера -->
-      <a-camera position="0 2 0"></a-camera>
+
+        <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            raycaster="objects: .clickable">
+        </a-entity>
+
     </a-scene>
+    <script src="../scripts/reset-on-collision.js"></script>
+    <script>
+        document.getElementById('to-start-room').addEventListener('click', (event) => {
+            window.location.replace("./start-room.html");
+        });
+        document.getElementById('to-main-hall').addEventListener('click', (event) => {
+            window.location.replace("./main-hall.html");
+        });
+        document.getElementById('to-bathroom').addEventListener('click', (event) => {
+            window.location.replace("./bathroom.html");
+        });
+        document.getElementById('to-treatment-room').addEventListener('click', (event) => {
+            window.location.replace("./treatment-room.html");
+        });
+    </script>
     </body>
 
 </html>
