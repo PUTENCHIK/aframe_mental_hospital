@@ -4,9 +4,22 @@
     <meta charset="utf-8">
     <title>Стартовая Комната</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="../styles/inventory.css">
+    <link rel="stylesheet" href="../styles/notification.css">
 </head>
 <body>
-
+    <!-- Инвентарь -->
+    <div class="ui-overlay">
+        <div class="inventory-title">🎒 Инвентарь</div>
+        <div class="inventory-items" id="inventory-ui">
+            <!-- Слоты инвентаря будут заполняться здесь -->
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        Предмет добавлен в инвентарь!
+    </div>
+    <!-- /Инвентарь -->
     <a-scene fog="type: linear; color: #000000; near: 1; far: 6">
         <a-sky color="#000000"></a-sky>
         <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity>
@@ -223,9 +236,9 @@
 
         <!-- Стол -->
         <a-entity
-            gltf-model="../models/default_table.glb"
-            position="0 0.5 2"
-            scale="0.8 0.8 0.8"
+            gltf-model="../models/old_table.glb"
+            position="0 0.17 2.1"
+            scale="0.03 0.015 0.02"
             rotation="0 0 0"
             class="collision">
         </a-entity>
@@ -287,7 +300,48 @@
             rotation="0 -90 0">
         </a-entity>
 
+
     </a-scene>
+
+    <!-- Кодик для инвентаря и интерактивных объектов -->
+    <script src="../scripts/inventory.js"></script>
+    <script src="../scripts/interactiveThings.js"></script>
+    <script src="../scripts/unlockThings.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script>
+        let inventorySystem;
+        let interactiveThings;
+        let notification;
+        let unlockThings;
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            notification = new Notifications();
+            inventorySystem = new InventorySystem(notification);
+            interactiveThings = new InteractiveThings(inventorySystem, notification);
+            unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+        }); 
+    </script>
+    <!-- /Кодик для инвентаря -->
+
+    <!-- Кодик для локаций -->
+    <script src="../scripts/locationController.js"></script>
+    <script>
+        const locationController = new LocationController("start-room");
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            const camera = document.getElementById("camera");
+
+            if (locationController.lastLocation === "coridor") {
+                camera.setAttribute("position", "-3 0 2")
+            }
+            else {
+                camera.setAttribute("position", "1 0 -2")
+            }
+            locationController.updateLastLocation();
+        }); 
+    </script>
+    <!-- Кодик для локаций -->
+
     <script src="../scripts/reset-on-collision.js"></script>
     <script>
         document.getElementById('to-coridor').addEventListener('click', (event) => {

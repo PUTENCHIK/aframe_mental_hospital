@@ -182,8 +182,28 @@
             raycaster="objects: .clickable">
         </a-entity>
 
+
+
     </a-scene>
     <script src="../scripts/reset-on-collision.js"></script>
+    <!-- Кодик для локаций -->
+    <script src="../scripts/locationController.js"></script>
+    <script>
+        const locationController = new LocationController("coridor");
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            const camera = document.getElementById("camera");
+
+            if (locationController.lastLocation === "start-room") {
+                camera.setAttribute("position", "22 0 -2.5")
+            }
+            else {
+                camera.setAttribute("position", "17.5 0 -1.6")
+            }
+            locationController.updateLastLocation();
+        }); 
+    </script>
+    <!-- Кодик для локаций -->
     <script>
         document.getElementById('to-start-room').addEventListener('click', (event) => {
             window.location.replace("./start-room.html");

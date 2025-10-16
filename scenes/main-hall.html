@@ -1,18 +1,32 @@
 <html>
     <head>
-        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+        <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+        <link rel="stylesheet" href="../styles/inventory.css">
+        <link rel="stylesheet" href="../styles/notification.css">
     </head>
     <body>
-        <a-scene >
-            <!-- <a-sky color="#000000"></a-sky>
-            <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity> -->
+        <!-- Инвентарь -->
+        <div class="ui-overlay">
+            <div class="inventory-title">🎒 Инвентарь</div>
+            <div class="inventory-items" id="inventory-ui">
+                <!-- Слоты инвентаря будут заполняться здесь -->
+            </div>
+        </div>
+        
+        <div class="notification" id="notification">
+            Предмет добавлен в инвентарь!
+        </div>
+        <!-- /Инвентарь -->
+         <a-scene fog="type: linear; color: #000000; near: 1; far: 8"> <!-- fog="type: linear; color: #000000; near: 1; far: 8"  -->
+            <a-sky color="#000000"></a-sky>
+            <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity>
 
             <!-- Камера -->
             <a-entity id="cameraRig" position="0 1.6 0">
                 <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision="with: .collision">
-                <!-- <a-entity id="headLight"
-                            light="type: point; color: #ffffff; intensity: 2; distance: 4; decay: 2">
-                </a-entity> -->
+                <a-entity id="headLight"
+                            light="type: point; color: #ffffff; intensity: 2; distance: 6; decay: 2">
+                </a-entity>
                 </a-entity>
             </a-entity>            
 
@@ -289,105 +303,583 @@
 
             <!-- Стены -->
             <a-box 
-                position="-2 2 9.8" 
+                position="-2 2 7.8" 
                 width="4" 
                 height="4" 
                 depth="0.2" 
                 src="../textures/wall3.jpg" 
                 material="" 
                 geometry="" 
-                rotation="0 0 0">
+                rotation="0 0 0"
+                class="collision">
             </a-box>
 
             <a-box 
-                position="2 2 9.8" 
+                position="2 2 7.8" 
                 width="4" 
                 height="4" 
                 depth="0.2" 
                 src="../textures/wall3.jpg" 
                 material="" 
                 geometry="" 
-                rotation="0 0 0">
+                rotation="0 0 0"
+                class="collision">
             </a-box>
 
             <a-box 
-                position="-2 2 -9.8" 
+                position="-2 2 -7.8" 
                 width="4" 
                 height="4" 
                 depth="0.2" 
                 src="../textures/wall3.jpg" 
                 material="" 
                 geometry="" 
-                rotation="0 0 0">
+                rotation="0 0 0"
+                class="collision">
             </a-box>
 
             <a-box 
-                position="2 2 -9.8" 
+                position="2 2 -7.8" 
                 width="4" 
                 height="4" 
                 depth="0.2" 
                 src="../textures/wall3.jpg" 
                 material="" 
                 geometry="" 
-                rotation="0 0 0">
+                rotation="0 0 0"
+                class="collision">
             </a-box>
 
             <a-box 
-                position="-5.3 2 -8.5" 
+                position="-4 2 -6" 
                 width="4" 
                 height="4" 
                 depth="0.2" 
                 src="../textures/wall3.jpg" 
                 material="" 
                 geometry="" 
-                rotation="0 45 0">
+                rotation="0 90 0"
+                class="collision">
             </a-box>
 
             <a-box 
-                position="-8 2 -5.8" 
+                position="-7 2 -4" 
+                width="6" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 0 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="4.05 2 -5.75" 
+                width="4.3" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 90 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="7.12 2 -3.69" 
+                width="6" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 180 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="3.7 2 5.79" 
                 width="4" 
                 height="4" 
                 depth="0.2" 
                 src="../textures/wall3.jpg" 
                 material="" 
                 geometry="" 
-                rotation="0 45 0">
+                rotation="0 90 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="6.6 2 3.69" 
+                width="6" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 180 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="-3.9 2 6" 
+                width="4" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 90 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="-6.8 2 3.9" 
+                width="6" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 0 0"
+                class="collision">
+            </a-box>
+
+            <!-- <a-box 
+                position="8.12 2 5.69" 
+                width="4" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 225 0"
+                class="collision">
+            </a-box> -->
+
+            <a-box 
+                position="9.5 2 -2.2" 
+                width="4.4" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 90 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="9.5 2 2.2" 
+                width="4.4" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 90 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="-9.5 2 -2.2" 
+                width="4.4" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 90 0"
+                class="collision">
+            </a-box>
+
+            <a-box 
+                position="-9.5 2 2.2" 
+                width="4.4" 
+                height="4" 
+                depth="0.2" 
+                src="../textures/wall3.jpg" 
+                material="" 
+                geometry="" 
+                rotation="0 90 0"
+                class="collision">
             </a-box>
             <!-- /Стены -->
 
+            <!-- Кресло -->
+            <a-entity
+                gltf-model="../models/sofa.glb"
+                position="-6 1 0"
+                scale="0.1 0.1 0.1"
+                rotation="0 90 0"
+                class="collision">
+            </a-entity>
 
-            <a-box geometry="primitive: box; depth: 0.5; height: 5; width: 9" position="9.71442 2.5 0" scale="1.00217 1 1"
-                material="" rotation="0 90 0"></a-box>
-            <a-box geometry="depth: 0.5; height: 5; width: 9" position="9.71442 2.5 0" scale="1.00217 1 1" rotation="0 90 0"
-                material=""></a-box>
-            <!-- <a-box geometry="primitive: box; depth: 0.5; height: 2.5; width: 2" position="0 1.25 -9.49227" material="color: #a88f6b"
-                id="door-to-hall"></a-box>
-            <a-box geometry="primitive: box; depth: 0.5; height: 2.5; width: 4" position="0 1.25 9.56231" material="color: #a88f6b"
-                id="main-door"></a-box> -->
-            <!-- <a-box geometry="depth: 0.5; height: 2.5; width: 4" position="0 1.25 9.56231" material="color: #a88f6b"
-                id="main-door-window"></a-box> -->
-            <a-box geometry="primitive: box; depth: 1; height: 3.5; width: 2" position="-5.99345 2.6068 8.29187"
-                material="color: #58d5cd" id="right-window-1" rotation="0 -45 0"></a-box>
-            <a-box geometry="primitive: box; height: 3.5; width: 2" position="-8.11463 2.6068 6.17069" material="color: #58d5cd"
-                id="right-window-2" rotation="0 -45 0"></a-box>
-            <a-box geometry="primitive: box; height: 3.5; width: 2" position="5.93372 2.6068 8.44806" material="color: #58d5cd"
-                id="left-window-1" rotation="0 45 0"></a-box>
-            <a-box geometry="primitive: box; height: 3.5; width: 2" position="8.317 2.607 6.051" material="color: #58d5cd"
-                id="left-window-2" rotation="0 45 0"></a-box>
-            <a-box geometry="primitive: box; depth: 0.5; height: 5; width: 9" position="-7.01845 2.5 -7.23912" material=""
-                rotation="0 45 0"></a-box>
-            <a-box geometry="primitive: box; depth: 0.5; height: 5; width: 9" position="7.2015 2.5 -7.02206" rotation="0 -45 0"
-                material=""></a-box>
-            <a-box geometry="depth: 0.5; height: 5; width: 9" position="7.2015 2.5 -7.02206" rotation="0 -45 0" material=""></a-box>
-            <a-box geometry="depth: 0.5; height: 5; width: 9" position="-7.01845 2.5 -7.23912" rotation="0 45 0"
-                material=""></a-box>
-            <a-box geometry="depth: 0.5; height: 5; width: 9" position="7.268 2.5 6.998" rotation="0 45 0"
-                material=""></a-box>
-            <a-box geometry="depth: 0.5; height: 5; width: 9" position="-9.750 2.5 0" rotation="0 90 0"
-                material=""></a-box>
+            <!-- Диван -->
+            <a-entity
+                gltf-model="../models/old_sofa.glb"
+                position="0 0.1 -2"
+                scale="1.1 1.1 1.1"
+                rotation="0 0 0"
+                class="collision">
+            </a-entity>
+          
+            <!-- Диван -->
+            <a-entity
+                gltf-model="../models/old_sofa.glb"
+                position="-4 0.1 -2"
+                scale="1.1 1.1 1.1"
+                rotation="0 0 0"
+                class="collision">
+            </a-entity>
 
-            <a-box geometry="depth: 0.5; height: 5; width: 9" position="-7.125 2.500 7.159" rotation="0 -45 0"></a-box>
+            <!-- Стол регистрации -->
+            <a-entity
+                gltf-model="../models/old_wooden_desk.glb"
+                position="0 0.7 0"
+                scale="1.7 1.3 1.7"
+                rotation="0 0 0"
+                class="collision">
+            </a-entity> 
+            
+            <!-- Главный выход -->
+            <a-entity position="3 -0.05 4.8" >
+                <a-box
+                    position="-3 1.4 2.9" 
+                    width="1.6" 
+                    height="2.7" 
+                    depth="0.1"
+                    id="to-coridor"
+                    src="../textures/door.jpg"
+                    class="clickable"
+                    >
+                </a-box>
+                <a-box
+                    position="-4.6 1.4 2.9" 
+                    width="1.6" 
+                    height="2.7" 
+                    depth="0.1"
+                    id="to-coridor"
+                    src="../textures/doorleft.jpg"
+                    class="clickable collision"
+                    rotation="0 0 0"
+                    >
+                </a-box>    
+            </a-entity>
+
+            <!-- Дверь со стороны коридора -->
+            <a-box
+                position="0 1.3 -7.65" 
+                width="1.9" 
+                height="2.7" 
+                depth="0.1"
+                id="to-coridor"
+                src="../textures/door.jpg"
+                class="clickable collision"
+                rotation="0 0 0"
+                >
+            </a-box>
+
+            <!-- Дверь в комнату глав. врача -->
+            <a-box
+                position="-9.4 1.3 0" 
+                width="1.9" 
+                height="2.7" 
+                depth="0.1"
+                id="to-coridor"
+                src="../textures/door.jpg"
+                class="clickable collision"
+                rotation="0 270 0"
+                >
+            </a-box>          
+            
+            <!-- Дверь в комнату с инструментами -->
+            <a-box
+                position="7 1.3 -3.6" 
+                width="1.9" 
+                height="2.7" 
+                depth="0.1"
+                id="to-coridor"
+                src="../textures/door.jpg"
+                class="clickable collision"
+                rotation="0 0 0"
+                >
+            </a-box>   
+
+            <!-- Дверь в маленький коридор -->
+            <a-box
+                position="-7 1.3 -3.85" 
+                width="1.9" 
+                height="2.7" 
+                depth="0.1"
+                id="to-coridor"
+                src="../textures/door.jpg"
+                class="clickable collision"
+                rotation="0 0 0"
+                
+                >
+            </a-box>   
+
+            <!-- Шкафчик -->
+            <a-entity
+                gltf-model="../models/wooden_drawer.glb"
+                position="-2.4 0.1 -7.4"
+                scale="0.9 0.9 0.9"
+                rotation="0 -90 0"
+                class="collision">
+            </a-entity> 
+
+            <!-- Шкафчик -->
+            <a-entity
+                gltf-model="../models/wooden_drawer.glb"
+                position="2.9 0.1 5.4"
+                scale="0.9 0.9 0.9"
+                rotation="0 180 0"
+                class="collision">
+            </a-entity> 
+
+            <!-- Труп -->
+            <a-entity
+                gltf-model="../models/body_under_cloth.glb"
+                position="4 0.28 0"
+                scale="0.01 0.01 0.01"
+                rotation="0 90 0"
+                class="collision">
+            </a-entity> 
+
+            <!-- Шкафчик -->
+            <a-entity
+                gltf-model="../models/wooden_drawer.glb"
+                position="6.4 0.1 2.9"
+                scale="0.9 0.9 0.9"
+                rotation="0 90 0"
+                class="collision">
+            </a-entity> 
+        
+            <!-- Каталка -->
+            <a-entity
+                gltf-model="../models/wheelchair2.glb"
+                position="-9.5 -1.1 3.5"
+                scale="0.1 0.1 0.1"
+                rotation="0 -90 0"
+                class="collision">
+            </a-entity>
+
+            <!-- Стул -->
+            <a-entity
+                gltf-model="../models/old_chair.glb"
+                position="0 0.5 2"
+                scale="0.0003 0.0003 0.0003"
+                rotation="0 -90 0"
+                class="collision">
+            </a-entity>
+
+            <!-- Хрюшка -->
+            <a-entity
+                gltf-model="../models/dead_pig.glb"
+                position="-3 2 3"
+                scale="1 1 1"
+                rotation="0 -45 0"
+                class="collision">
+            </a-entity>
+
+            <!-- Картина рамка -->
+            <a-entity
+                gltf-model="../models/wall_picture.glb"
+                position="-3.8 2 5.65"
+                scale="1 1 1"
+                rotation="0 90 0"
+                class="collision">
+            </a-entity>
+
+            <!-- Картина фото -->
+            <a-box
+                position="-3.8 2 5.63" 
+                width="0.01" 
+                height="1.10" 
+                depth="1.75" 
+                color="#87CEEB"
+                src="../textures/creepy_painting.jpg"
+                rotation="0 0 0">
+                
+            </a-box>
+
+
+            <!-- Картина рамка -->
+            <a-entity
+                gltf-model="../models/wall_picture.glb"
+                position="3.94 2 -5.65"
+                scale="1 1 1"
+                rotation="0 270 0">
+            </a-entity>
+
+            <!-- Картина фото -->
+            <a-box
+                position="3.94 2 -5.63" 
+                width="0.01" 
+                height="1.10" 
+                depth="1.75" 
+                color="#87CEEB"
+                src="../textures/creepy_painting_4.jpg"
+                rotation="0 0 0">
+                
+            </a-box>
+
+            <!-- Картина рамка -->
+            <a-entity
+                gltf-model="../models/wall_picture.glb"
+                position="-9.4 2 -2.65"
+                scale="1 1 1"
+                rotation="0 90 0">
+            </a-entity>
+
+            <!-- Картина фото -->
+            <a-box
+                position="-9.4 2 -2.63" 
+                width="0.01" 
+                height="1.10" 
+                depth="1.75" 
+                color="#87CEEB"
+                src="../textures/doctor.png"
+                rotation="0 0 0"
+                class="collision">
+                
+            </a-box>
+
+            <!-- Окно -->
+            <a-box
+                position="9.42 2 0" 
+                width="0.1" 
+                height="2" 
+                depth="3" 
+                color="#87CEEB"
+                src="../textures/window.jpg"
+                class="collision">
+                
+            </a-box>
+
+            <a-box
+                id="Зал-Доска-1"
+                data-name="Зал-Доска-1"
+                position="-0.75 1.75 7.6" 
+                width="3.6" 
+                height="0.3" 
+                depth="0.1" 
+                src="../textures/plank.jpg"
+                class="clickable interactive"
+                data-inventory-items="Молоток"
+                animation__position="property: position; to: -3 0 2.8; dur: 800; startEvents: use"
+                animation__rotate="property: rotation; to: 180; dur: 600; startEvents: use"
+                >
+            </a-box>
+
+            <a-box
+                id="Зал-Доска-2"
+                data-name="Зал-Доска-2"
+                position="-0.75 0.6 7.6" 
+                width="3.6" 
+                height="0.3" 
+                depth="0.1" 
+                src="../textures/plank.jpg"
+                class="clickable interactive"
+                data-inventory-items="Молоток"
+                animation__position="property: position; to: -3 0 2.8; dur: 800; startEvents: use"
+                animation__rotate="property: rotation; to: 180; dur: 600; startEvents: use"
+                >
+            </a-box>
+
+            <a-entity
+                id="Зал-Кодовый-Замок"
+                data-name="Зал-Кодовый-Замок"
+                data-inventory-items="Код"
+                gltf-model="../models/padlock.glb"
+                position="-0.75 1.15 7.6"
+                scale="0.01 0.01 0.01"
+                rotation="0 180 0"
+                class="interactive clickable">
+            </a-entity>
+
+            <a-entity
+                id="Зал-Кодовый-Замок"
+                data-name="Зал-Кодовый-Замок"
+                data-inventory-items="Код"
+                gltf-model="../models/bunch_of_electric_wires.glb"
+                position="-0.75 0 6.6"
+                scale="0.1 0.1 0.1"
+                rotation="0 0 0"
+                class="interactive clickable">
+            </a-entity>
+
+            <!-- <a-entity
+                id="electric"
+                gltf-model="../models/light_beam.glb"
+                position="-0.75 0 6.6"
+                scale="1 1 1"
+                rotation="0 0 0"
+                animation="property: visible; dir: alternate; dur: 100; loop: true;">
+            </a-entity> -->
+
+            <a-entity
+                cursor="fuse: false; rayOrigin: mouse"
+                raycaster="objects: .clickable">
+            </a-entity>
         </a-scene>
-    </body>
 
+        <!-- Кодик для инвентаря и интерактивных объектов -->
+        <script src="../scripts/inventory.js"></script>
+        <script src="../scripts/interactiveThings.js"></script>
+        <script src="../scripts/unlockThings.js"></script>
+        <script src="../scripts/notifications.js"></script>
+        <script>
+            let inventorySystem;
+            let interactiveThings;
+            let notification;
+            let unlockThings;
+
+            document.querySelector('a-scene').addEventListener('loaded', function() {
+                notification = new Notifications();
+                inventorySystem = new InventorySystem(notification);
+                interactiveThings = new InteractiveThings(inventorySystem, notification);
+                unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+            }); 
+        </script>
+        <!-- /Кодик для инвентаря -->
+
+        <!-- Кодик для локаций -->
+        <script src="../scripts/locationController.js"></script>
+        <script>
+            const locationController = new LocationController("main-hall");
+
+            document.querySelector('a-scene').addEventListener('loaded', function() {
+
+                const camera = document.getElementById("camera");
+
+                if (locationController.lastLocation === "doctors-room") {
+                    camera.setAttribute("position", "6.3 0 -4.3")
+                }
+                else if (locationController.lastLocation === "small-coridor") {
+                    camera.setAttribute("position", "-4.5 0 -7")
+                }
+                else if (locationController.lastLocation === "coridor") {
+                    camera.setAttribute("position", "0 0 -4")
+                }
+                else if (locationController.lastLocation === "tools-room") {
+                    camera.setAttribute("position", "7.8 0 -6.4")
+                }
+                else {
+                    camera.setAttribute("position", "-1.5 0 5")
+                }
+                locationController.updateLastLocation();
+            }); 
+        </script>
+        <!-- Кодик для локаций -->
+
+        <script src="../scripts/reset-on-collision.js"></script>
+        <script>
+            document.getElementById('to-coridor').addEventListener('click', (event) => {
+                window.location.replace("./coridor.html");
+            });
+        </script>
+    </body>
 </html>
