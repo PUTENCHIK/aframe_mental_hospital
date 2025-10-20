@@ -3,8 +3,16 @@
         <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
         <link rel="stylesheet" href="../styles/inventory.css">
         <link rel="stylesheet" href="../styles/notification.css">
+        <link rel="stylesheet" href="../styles/death.css">
     </head>
     <body>
+
+        <div id="death-screen">
+            <h1>СМЕРТЬ</h1>
+            <button onclick="location.reload()">ПЕРЕИГРАТЬ</button>
+        </div>
+
+
         <!-- Инвентарь -->
         <div class="ui-overlay">
             <div class="inventory-title">🎒 Инвентарь</div>
@@ -544,7 +552,10 @@
             </a-entity> 
             
             <!-- Главный выход -->
-            <a-entity position="3 -0.05 4.8" >
+            <a-entity position="3 -0.05 4.8" 
+                class="clickable unlock"
+                data-interactive-things="Зал-Доска-1 Зал-Доска-2 Щиток"
+                >
                 <a-box
                     position="-3 1.4 2.9" 
                     width="1.6" 
@@ -801,24 +812,43 @@
             </a-entity>
 
             <a-entity
-                id="Зал-Кодовый-Замок"
-                data-name="Зал-Кодовый-Замок"
-                data-inventory-items="Код"
                 gltf-model="../models/bunch_of_electric_wires.glb"
                 position="-0.75 0 6.6"
                 scale="0.1 0.1 0.1"
                 rotation="0 0 0"
-                class="interactive clickable">
+                class="clickable">
             </a-entity>
 
-            <!-- <a-entity
-                id="electric"
-                gltf-model="../models/light_beam.glb"
-                position="-0.75 0 6.6"
-                scale="1 1 1"
+            <a-entity
+                id="Щиток"
+                data-name="Щиток"
+                gltf-model="../models/dark_mystery_effect.glb"
+                position="-0.75 0.5 6.6"
+                class="clickable"
+                scale="0.6 0.6 0.6"
                 rotation="0 0 0"
-                animation="property: visible; dir: alternate; dur: 100; loop: true;">
-            </a-entity> -->
+                material="metalness:0; roughness:1"
+                animation__pulse="property: scale; to: 0.52 0.52 0.52; dur: 500; loop: true; dir: alternate"
+                animation__jitter="property: position; to: -0.73 0.52 6.62; dur: 20; loop: true; dir: alternate"
+                animation__twist="property: rotation; to: 5 0 5; dur: 40; loop: true; dir: alternate"
+                >
+            </a-entity>
+
+            <a-entity
+                id="Зал-Замок"
+                data-name="Зал-Замок"    
+                gltf-model="../models/lock_and_key.glb"
+                position="-9.3 0.9 -0.78"
+                scale="1.5 1.5 1.5"
+                rotation="0 90 0"
+                class="clickable interactive"
+                data-inventory-items="Ключ1"
+                animation__position="property: position; to: 0.8 0 -7.58; dur: 800; startEvents: use"
+                animation__rotate="property: rotation; to: 180; dur: 600; startEvents: use"
+                >
+            </a-entity>
+
+
 
             <a-entity
                 cursor="fuse: false; rayOrigin: mouse"
@@ -842,7 +872,7 @@
                 inventorySystem = new InventorySystem(notification);
                 interactiveThings = new InteractiveThings(inventorySystem, notification);
                 unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
-            }); 
+            });
         </script>
         <!-- /Кодик для инвентаря -->
 
@@ -850,11 +880,9 @@
         <script src="../scripts/locationController.js"></script>
         <script>
             const locationController = new LocationController("main-hall");
-
             document.querySelector('a-scene').addEventListener('loaded', function() {
-
                 const camera = document.getElementById("camera");
-
+                
                 if (locationController.lastLocation === "doctors-room") {
                     camera.setAttribute("position", "6.3 0 -4.3")
                 }
@@ -879,6 +907,21 @@
         <script>
             document.getElementById('to-coridor').addEventListener('click', (event) => {
                 window.location.replace("./coridor.html");
+                
+            });
+
+            document.getElementById("Щиток").addEventListener('click', (event) => {
+                let cameraPosition = document.getElementById("camera").getAttribute("position")
+                let electric = document.getElementById("Щиток").getAttribute("position")
+
+                console.log(cameraPosition)
+                console.log(electric)
+
+                console.log(Math.abs(cameraPosition.z - electric.z))
+
+                if (Math.abs(cameraPosition.x - electric.x) < 1 && Math.abs(cameraPosition.z - electric.z) < 0.8) {
+                    document.getElementById("death-screen").style.display = "flex";
+                }
             });
         </script>
     </body>
