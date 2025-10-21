@@ -24,7 +24,7 @@ class UnlockThings {
             });
 
             if (!successItem) {
-                this.notification.showNotification(`Вам нужен: ${neededItem}`);
+                this.notification.showNotification(`Необходим предмет: ${neededItem}`);
                 return false;
             }
 

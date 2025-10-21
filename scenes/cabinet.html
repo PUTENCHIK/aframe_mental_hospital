@@ -5,9 +5,24 @@
     <meta charset="utf-8">
     <title>Кабинет главного врача</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="../styles/inventory.css">
+    <link rel="stylesheet" href="../styles/notification.css">
 </head>
 
 <body>
+    <!-- Инвентарь -->
+    <div class="ui-overlay">
+        <div class="inventory-title">🎒 Инвентарь</div>
+        <div class="inventory-items" id="inventory-ui">
+            <!-- Слоты инвентаря будут заполняться здесь -->
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        Предмет добавлен в инвентарь!
+    </div>
+    <!-- /Инвентарь -->
+
     <a-scene fog="type: linear; color: #000000; near: 1; far: 6">../models/pict
         
         <a-sky color="#000000"></a-sky>
@@ -167,11 +182,15 @@
 
         <!-- Записка с кодом -->
         <a-entity
+            id="Код"
+            data-icon="📔"
+            data-name="Код"
+            data-interactive-things="ДверцаЩитка"
+            class="collectable clickable collision"
             gltf-model="../models/note_with_code.glb"
             position="0.66 1.05 -4.5"
             scale="0.08 0.08 0.08"
-            rotation="90 90 0"
-            class="collision">
+            rotation="90 90 0">
         </a-entity>
 
         <!-- Записи дяди доктора на столе -->
@@ -209,18 +228,26 @@
         >
             <!-- Дверца -->
             <a-entity
+                id="panel-door"
+                data-name="ДверцаЩитка"
                 gltf-model="../models/electrical_panel_door.glb"
                 position="-0.02 0 0.03"
                 scale="1 1 1"
-                class="collision">
+                class="clickable collision interactive"
+                data-inventory-items="Отвёртка"
+                animation__position="property: position; to: -3 0 2.8; dur: 800; startEvents: use"
+                animation__rotate="property: rotation; to: 180; dur: 600; startEvents: use">
             </a-entity>
     
             <!-- Сам щиток -->
             <a-entity
+                id="panel"
+                class="clickable collision unlock"
+                data-interactive-things="ДверцаЩитка"
+                data-inventory-items="Кусачки"
                 gltf-model="../models/electrical_panel_body.glb"
                 position="0 0 0"
-                scale="1 1 1"
-                class="collision">
+                scale="1 1 1">
             </a-entity>
         </a-entity>
 
@@ -314,12 +341,40 @@
         </a-entity>
 
     </a-scene>
+
     <script src="../scripts/reset-on-collision.js"></script>
+
+    <!-- Кодик для инвентаря и интерактивных объектов -->
+    <script src="../scripts/inventory.js"></script>
+    <script src="../scripts/interactiveThings.js"></script>
+    <script src="../scripts/unlockThings.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script>
+        let inventorySystem;
+        let interactiveThings;
+        let notification;
+        let unlockThings;
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            notification = new Notifications();
+            inventorySystem = new InventorySystem(notification);
+            interactiveThings = new InteractiveThings(inventorySystem, notification);
+            unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+        }); 
+    </script>
+    <!-- /Кодик для инвентаря -->
+
     <!-- Переход в главный зал -->
     <script>
         document.getElementById('to-main-hall').addEventListener('click', (event) => {
             window.location.replace("./main-hall.html");
         });
+
+        document.getElementById('panel').addEventListener('click', (event) => {
+            if (unlockThings.checkUnlock(event.target)) {
+                notification.showNotification("Электричество отключено!");
+            }
+        })
     </script>
 </body>
 

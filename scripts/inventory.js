@@ -38,7 +38,7 @@ class InventorySystem {
                 icon: itemIcon
             });
             this.saveInventory();
-            this.notification.showNotification(`Получен: ${itemName}`);
+            this.notification.showNotification(`Получен предмет: ${itemName}`);
         }
     }
 

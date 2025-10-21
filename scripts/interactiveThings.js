@@ -58,7 +58,7 @@ class InteractiveThings {
                     
                 }
                 else {
-                    this.notification.showNotification(`Вам нужен: ${neededItem}`);
+                    this.notification.showNotification(`Необходим предмет: ${neededItem}`);
                 }
             }
         });
