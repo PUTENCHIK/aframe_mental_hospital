@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Кабинет главного врача</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="../styles/inventory.css">
+    <link rel="stylesheet" href="../styles/notification.css">
+</head>
+
+<body>
+    <!-- Инвентарь -->
+    <div class="ui-overlay">
+        <div class="inventory-title">🎒 Инвентарь</div>
+        <div class="inventory-items" id="inventory-ui">
+            <!-- Слоты инвентаря будут заполняться здесь -->
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        Предмет добавлен в инвентарь!
+    </div>
+    <!-- /Инвентарь -->
+
+    <a-scene fog="type: linear; color: #000000; near: 1; far: 6">
+        
+        <a-sky color="#000000"></a-sky>
+        <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity>
+        
+        <!-- Камера -->
+        <a-entity id="cameraRig" position="0 1.6 0">
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision="with: .collision">
+            <a-entity id="headLight"
+                        light="type: point; color: #ffffff; intensity: 1; distance: 4; decay: 1">
+            </a-entity>
+            </a-entity>
+        </a-entity>
+
+        <!-- Чтобы можно было кликать по предметам! -->
+        <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            raycaster="objects: .clickable">
+        </a-entity>
+        <!-- /Чтобы можно было кликать по предметам! -->
+
+        <!-- Пол -->
+        <a-entity position="1 0 -2">
+            <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="0 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-4 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="0 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-4 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="0 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-4 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-4 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-6 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-6 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-6 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+
+            <a-plane position="-6 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+            material="metalness:0; roughness:1"></a-plane>
+        </a-entity>
+
+        <!-- Крыша -->
+        <a-plane position="-1 4 -3" rotation="90 0 0" width="10" height="8" color="#5C4F3B" src="../textures/cabinet-roof.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <!-- Стены -->
+        <a-entity>
+            <a-box position="2 2 -7" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"></a-box>
+            <a-box position="-2 2 -7" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"></a-box>
+            <a-box position="-6 2 -7" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"></a-box>
+
+            <a-box position="-6 2 -5" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"
+                rotation="0 90 0"></a-box>
+            <a-box position="-6 2 -1" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"
+                rotation="0 90 0"></a-box>
+
+            <a-box position="2 2 1" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"></a-box>
+            <a-box position="-2 2 1" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"></a-box>
+            <a-box position="-6 2 1" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"></a-box>
+
+            <a-box position="4 2 -5" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"
+                rotation="0 90 0"></a-box>
+            <a-box position="4 2 -1" width="4" height="4" depth="0.1" src="../textures/cabinet-wall.jpg" class="collision"
+                rotation="0 90 0"></a-box>
+        </a-entity>
+
+        <!-- Дверь -->
+         <a-box
+            position="0 1.4 0.9" 
+            width="1.9" 
+            height="2.7" 
+            depth="0.1"
+            id="to-main-hall"
+            src="../textures/door.jpg"
+            class="clickable collision"
+            >
+        </a-box>
+
+        <!-- Стол -->
+        <a-entity
+            gltf-model="../models/old_table.glb"
+            position="-1 0.0 -4.5"
+            scale="0.032 0.017 0.025"
+            rotation="0 0 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Лежащий стул -->
+        <a-entity
+            gltf-model="../models/default_chair.glb"
+            position="-1 0.65 -3"
+            scale="1 1 1"
+            rotation="0 45 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Шкаф -->
+        <a-entity
+            gltf-model="../models/closet.glb"
+            position="-4.7 2 0.5"
+            scale="2 2 2"
+            rotation="0 90 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Записка с кодом -->
+        <a-entity
+            id="Код"
+            data-icon="📔"
+            data-name="Код"
+            data-interactive-things="ДверцаЩитка"
+            class="collectable clickable collision"
+            gltf-model="../models/note_with_code.glb"
+            position="0.66 1.05 -4.5"
+            scale="0.08 0.08 0.08"
+            rotation="90 90 0">
+        </a-entity>
+
+        <!-- Записи дяди доктора на столе -->
+        <a-entity
+            gltf-model="../models/doctor_notes.glb"
+            position="-1.3 1.3 -4.5"
+            scale="3 3 3"
+            rotation="0 90 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Рандомная тетрадка на полу -->
+        <a-entity
+            gltf-model="../models/secret_notebook.glb"
+            position="1 0 -2"
+            scale="0.1 0.1 0.1"
+            rotation="0 65 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Рандомный планшет на полу -->
+        <a-entity
+            gltf-model="../models/random_notes.glb"
+            position="-4 0 -3"
+            scale="1.2 1.2 1.2"
+            rotation="0 209 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Электрощиток -->
+        <a-entity
+            scale="2 2 2"
+            position="3.85 1.5 -2"
+            rotation="0 -90 0"
+        >
+            <!-- Дверца -->
+            <a-entity
+                id="panel-door"
+                data-name="ДверцаЩитка"
+                gltf-model="../models/electrical_panel_door.glb"
+                position="-0.02 0 0.03"
+                scale="1 1 1"
+                class="clickable collision interactive"
+                data-inventory-items="Отвёртка"
+                animation__position="property: position; to: -3 0 2.8; dur: 800; startEvents: use"
+                animation__rotate="property: rotation; to: 180; dur: 600; startEvents: use">
+            </a-entity>
+    
+            <!-- Сам щиток -->
+            <a-entity
+                id="panel"
+                class="clickable collision unlock"
+                data-interactive-things="ДверцаЩитка"
+                data-inventory-items="Кусачки"
+                gltf-model="../models/electrical_panel_body.glb"
+                position="0 0 0"
+                scale="1 1 1">
+            </a-entity>
+        </a-entity>
+
+        <!-- Записки на стенке -->
+        <a-entity
+            gltf-model="../models/dirty_papers.glb"
+            position="2.5 1.3 0.94"
+            scale="0.01 0.01 0.01"
+            rotation="0 0 0"
+            class="collision">
+        </a-entity>
+
+        <!-- Картина 1 -->
+        <a-entity
+            position="1 2 -6.9"
+            rotation="0 0 0"
+        >
+            <!-- Рамка -->
+            <a-entity
+                gltf-model="../models/picture_frame.glb"
+                scale="1.25 1.25 1.25"
+                
+                class="collision">
+            </a-entity>
+
+            <a-plane
+                src="../pictures/test-1.jpg"
+                width="1.8"
+                height="1.2"
+            ></a-plane>
+        </a-entity>
+
+        <!-- Картина 2 -->
+        <a-entity
+            position="-3 2 -6.9"
+            rotation="0 0 0"
+        >
+            <!-- Рамка -->
+            <a-entity
+                gltf-model="../models/picture_frame.glb"
+                scale="1.25 1.25 1.25"
+                
+                class="collision">
+            </a-entity>
+
+            <a-plane
+                src="../pictures/half-light.jpg"
+                width="1.8"
+                height="1.2"
+            ></a-plane>
+        </a-entity>
+
+        <!-- Картина 3 -->
+        <a-entity
+            position="-5.92 2 -4"
+            rotation="0 90 0"
+        >
+            <!-- Рамка -->
+            <a-entity
+                gltf-model="../models/picture_frame.glb"
+                scale="1.25 1.25 1.25"
+                
+                class="collision">
+            </a-entity>
+
+            <a-plane
+                src="../pictures/logic.jpg"
+                width="1.8"
+                height="1.2"
+            ></a-plane>
+        </a-entity>
+
+        <!-- Картина 4 -->
+        <a-entity
+            position="3.92 2 -4"
+            rotation="0 -90 0"
+        >
+            <!-- Рамка -->
+            <a-entity
+                gltf-model="../models/picture_frame.glb"
+                scale="1.25 1.25 1.25"
+                
+                class="collision">
+            </a-entity>
+
+            <a-plane
+                src="../pictures/reaction.jpg"
+                width="1.8"
+                height="1.2"
+            ></a-plane>
+        </a-entity>
+
+    </a-scene>
+
+    <script src="../scripts/reset-on-collision.js"></script>
+
+    <!-- Кодик для инвентаря и интерактивных объектов -->
+    <script src="../scripts/inventory.js"></script>
+    <script src="../scripts/interactiveThings.js"></script>
+    <script src="../scripts/unlockThings.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script>
+        let inventorySystem;
+        let interactiveThings;
+        let notification;
+        let unlockThings;
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            notification = new Notifications();
+            inventorySystem = new InventorySystem(notification);
+            interactiveThings = new InteractiveThings(inventorySystem, notification);
+            unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+        }); 
+    </script>
+    <!-- /Кодик для инвентаря -->
+
+    <!-- Переход в главный зал -->
+    <script>
+        document.getElementById('to-main-hall').addEventListener('click', (event) => {
+            window.location.replace("./main-hall.html");
+        });
+
+        document.getElementById('panel').addEventListener('click', (event) => {
+            if (unlockThings.checkUnlock(event.target)) {
+                notification.showNotification("Электричество отключено!");
+            }
+        })
+    </script>
+</body>
+
+</html>
