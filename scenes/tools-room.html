@@ -135,7 +135,7 @@
             width="1.9" 
             height="2.7" 
             depth="0.1"
-            id="to-main-hall"
+            id="to-treatment-room"
             src="../textures/door.jpg"
             class="clickable collision"
             >
@@ -326,8 +326,8 @@
         document.querySelector('a-scene').addEventListener('loaded', function() {
             const camera = document.getElementById("camera");
             
-            if (locationController.lastLocation === "healing-room") {
-                camera.setAttribute("position", "6.3 0 -4.3")
+            if (locationController.lastLocation === "treatment-room") {
+                camera.setAttribute("position", "-3.5 0 -3")
             }
             else {
                 camera.setAttribute("position", "0 0 0")
@@ -342,6 +342,9 @@
         document.getElementById('to-main-hall').addEventListener('click', (event) => {
             window.location.replace("./main-hall.html");
         });
+        document.getElementById('to-treatment-room').addEventListener('click', (event) => {
+            window.location.replace("./treatment-room.html")
+        })
     </script>
 </body>
 

@@ -2,7 +2,7 @@
     AFRAME.registerComponent('reset-on-collision', {
         schema: {
             with: {default: '.collision'},
-            colliderSize: {default: 0.5},
+            colliderSize: {default: 0.6},
             smoothRecovery: {default: true},
             pushBackDistance: {default: 0}
         },

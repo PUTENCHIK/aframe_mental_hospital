@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Кабинет главного врача</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="../styles/inventory.css">
+    <link rel="stylesheet" href="../styles/notification.css">
+</head>
+
+<body>
+    <!-- Инвентарь -->
+    <div class="ui-overlay">
+        <div class="inventory-title">🎒 Инвентарь</div>
+        <div class="inventory-items" id="inventory-ui">
+            <!-- Слоты инвентаря будут заполняться здесь -->
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        Предмет добавлен в инвентарь!
+    </div>
+    <!-- /Инвентарь -->
+
+    <a-scene renderer="antialias: true; alpha: true; sortObjects: true; physicallyCorrectLights: true; precision: high; colorManagement: true; depth: true; logarithmicDepthBuffer: true" fog="type: linear; color: #000000; near: 500; far: 5000">
+        
+        <a-sky color="#000000"></a-sky>
+        <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity>
+        
+        <!-- Камера -->
+        <a-entity id="cameraRig" position="0 1.6 0">
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision="with: .collision">
+            <a-entity id="headLight"
+                        light="type: point; color: #ffffff; intensity: 1; distance: 4; decay: 1">
+            </a-entity>
+            </a-entity>
+        </a-entity>
+
+        <!-- Чтобы можно было кликать по предметам! -->
+        <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            raycaster="objects: .clickable">
+        </a-entity>
+        <!-- /Чтобы можно было кликать по предметам! -->
+
+        <!-- Пол -->
+        <a-entity position="1 0 -2">
+            <a-plane position="-8 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-6 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-4 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="0 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-8 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-6 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-4 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-2 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="0 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="2 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-8 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-6 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-4 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="0 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-8 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-6 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-4 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="0 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-8 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-6 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-4 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-8 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-6 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-4 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="-2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="0 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+            <a-plane position="2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/blood-tile.png" material="roughness: 1" geometry=""></a-plane>
+        </a-entity>
+
+        <!-- Крыша -->
+        <a-entity position="1 0 -2"></a-entity>
+            <a-plane position="-6 4 -9" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="-2 4 -9" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="2 4 -9" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="-6 4 -5" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="-2 4 -5" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="2 4 -5" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="-6 4 -1" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="-2 4 -1" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+            <a-plane position="2 4 -1" rotation="90 -90 90" width="2" height="2" color="#5C4F3B" src="../textures/treatment_room_ceil.jpg" material="roughness: 1" geometry="width: 4; height: 4"></a-plane>
+        </a-entity>
+
+        <!-- Стены -->
+        <a-entity>
+            <a-box position="-6 2 -11" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision"></a-box>
+            <a-box position="-2 2 -11" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision"></a-box>
+            <a-box position="2 2 -11" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision"></a-box>
+
+            <a-box position="-8 2 -9" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision" rotation="0 90 0"></a-box>
+            <a-box position="-8 2 -5" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision" rotation="0 90 0"></a-box>
+            <a-box position="-8 2 -1" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision" rotation="0 90 0"></a-box>
+
+            <a-box position="-6 2 1" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision"></a-box>
+            <a-box position="-2 2 1" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision"></a-box>
+            <a-box position="2 2 1" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision"></a-box>
+
+            <a-box position="4 2 -9" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision" rotation="0 90 0"></a-box>
+            <a-box position="4 2 -5" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision" rotation="0 90 0"></a-box>
+            <a-box position="4 2 -1" width="4" height="4" depth="0.1" src="../textures/treatment_room_wall.png" class="collision" rotation="0 90 0"></a-box>
+        </a-entity>
+
+        <!-- Дверь -->
+        <a-box position="0 1.31364 0.9" width="1.9" height="2.7" depth="0.1" id="to-coridor" src="../textures/door.jpg" class="clickable collision" material="" geometry=""></a-box>
+        <a-box position="3.92566 1.25813 -3.90494" width="1.9" height="2.7" depth="0.1" id="to-tools-room" src="../textures/door.jpg" class="clickable collision" material="" geometry="" rotation="0 90 0"></a-box>
+
+        <!--Шкафчики-->
+        <a-entity>
+            <a-entity gltf-model="../models/med_closet.glb" position="3.28436 -0.016 -10.58" scale="" rotation="" class="collision"></a-entity>
+            <a-entity gltf-model="../models/med_closet.glb" position="1.5 -0.016 -10.58" scale="" rotation="" class="collision"></a-entity>
+            <a-entity gltf-model="../models/med_closet.glb" position="-0.2 -0.016 -10.58" scale="" rotation="" class="collision"></a-entity>
+        </a-entity>
+
+        <!--Занавески-->
+        <a-entity>
+            <a-entity gltf-model="../models/curtain.glb" position="-6.416 0.10038 -8.60798" scale="-0.5 0.4 0.5" rotation="0 90 0" class=""></a-entity>
+            <a-entity gltf-model="../models/curtain_2.glb" position="-6.416 0.1 -4.87818" scale="-0.5 0.4 0.5" rotation="0 90 0" class=""></a-entity>
+            <a-entity gltf-model="../models/curtain.glb" position="-6.41617 0.10038 -1.27098" scale="0.5 0.4 0.5" rotation="0 90 0" class=""></a-entity>
+        </a-entity>
+
+        <!--Кровати-->
+        <a-entity>
+            <a-entity gltf-model="../models/medicine_bed.glb" position="-6.75446 -0.0684 -8.4881" scale="0.012 0.015 0.012" rotation="" class="collision"></a-entity>
+            <a-entity gltf-model="../models/medicine_bed.glb" position="-6.75446 -0.0684 -4.7583" scale="0.012 0.015 0.012" rotation="" class="collision"></a-entity>
+            <a-entity gltf-model="../models/medicine_bed.glb" position="-6.75446 -0.0684 -1.1511" scale="0.012 0.015 0.012" rotation="" class="collision"></a-entity>
+        </a-entity>
+
+        <!--Операционное кресло-->
+        <a-entity gltf-model="../models/operating_bed.glb" position="1.83704 0 -7.57801" scale="1.5 1.5 1.5" rotation="0 -60.941509963499755 0" class="collision"></a-entity>
+
+        <!--Труп на кровати-->
+        <a-entity gltf-model="../models/body_under_cloth.glb" position="-6.78198 1.03249 -4.92643" scale="0.007 0.01 0.007" rotation="0 180 0" class="collision"></a-entity>
+
+        <!--Пила в шкафу-->
+        <a-entity gltf-model="../models/bloody_saw.glb" position="-0.1159 0.90699 -10.47315" scale="0.4 0.4 0.4" rotation="0 65 90" class="collision"></a-entity>
+
+    </a-scene>
+
+    <script src="../scripts/reset-on-collision.js"></script>
+
+    <!-- Кодик для инвентаря и интерактивных объектов -->
+    <script src="../scripts/inventory.js"></script>
+    <script src="../scripts/interactiveThings.js"></script>
+    <script src="../scripts/unlockThings.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script>
+        let inventorySystem;
+        let interactiveThings;
+        let notification;
+        let unlockThings;
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            notification = new Notifications();
+            inventorySystem = new InventorySystem(notification);
+            interactiveThings = new InteractiveThings(inventorySystem, notification);
+            unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+        }); 
+    </script>
+    <!-- /Кодик для инвентаря -->
+
+    <!-- Кодик для локаций -->
+    <script src="../scripts/locationController.js"></script>
+    <script>
+        const locationController = new LocationController("treatment-room");
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            const camera = document.getElementById("camera");
+
+            if (locationController.lastLocation === "tools-room") {
+                camera.setAttribute("position", "3 -0.2 -5.5")
+            }
+            else {
+                camera.setAttribute("position", "0 -0.2 0")
+            }
+            locationController.updateLastLocation();
+        }); 
+    </script>
+    <!-- Кодик для локаций -->
+
+    <!-- Переходы -->
+    <script>
+        document.getElementById('to-coridor').addEventListener('click', (event) => {
+            window.location.replace("./coridor.html");
+        });
+        document.getElementById('to-tools-room').addEventListener('click', (event) => {
+            window.location.replace("./tools-room.html");
+        });
+    </script>
+</body>
+
+</html>
