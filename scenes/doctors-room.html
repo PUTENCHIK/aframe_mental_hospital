@@ -365,7 +365,11 @@
     <!-- /Кодик для инвентаря -->
 
     <!-- Переход в главный зал -->
+     <script src="../scripts/locationController.js"></script>
     <script>
+        const locationController = new LocationController("doctors-room");
+        locationController.updateLastLocation();
+
         document.getElementById('to-main-hall').addEventListener('click', (event) => {
             window.location.replace("./main-hall.html");
         });
@@ -373,6 +377,7 @@
         document.getElementById('panel').addEventListener('click', (event) => {
             if (unlockThings.checkUnlock(event.target)) {
                 notification.showNotification("Электричество отключено!");
+                interactiveThings.addThing("Электричество")
             }
         })
     </script>

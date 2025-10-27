@@ -12,6 +12,10 @@
             <button onclick="location.reload()">ПЕРЕИГРАТЬ</button>
         </div>
 
+        <div id="win-screen">
+            <h1>ПОБЕДА</h1>
+            <button id="win_button">ПЕРЕИГРАТЬ</button>
+        </div>
 
         <!-- Инвентарь -->
         <div class="ui-overlay">
@@ -25,7 +29,7 @@
             Предмет добавлен в инвентарь!
         </div>
         <!-- /Инвентарь -->
-        <a-scene fog="type: linear; color: #000000; near: 1; far: 8"> fog="type: linear; color: #000000; near: 1; far: 8" 
+        <a-scene fog="type: linear; color: #000000; near: 1; far: 8">
             <a-sky color="#000000"></a-sky>
             <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity>
 
@@ -548,33 +552,36 @@
                 position="0 0.7 0"
                 scale="1.7 1.3 1.7"
                 rotation="0 0 0"
-                class="collision">
+                class="collision"
+                >
             </a-entity> 
             
             <!-- Главный выход -->
-            <a-entity position="3 -0.05 4.8" 
-                class="clickable unlock"
-                data-interactive-things="Зал-Доска-1 Зал-Доска-2 Щиток"
+            <a-entity position="3 -0.05 4.75" 
                 >
                 <a-box
+                    id="end1"
                     position="-3 1.4 2.9" 
                     width="1.6" 
                     height="2.7" 
                     depth="0.1"
-                    id=""
                     src="../textures/door.jpg"
-                    class="clickable"
+                    class="collision clickable unlock"
+                    data-interactive-things="Зал-Доска-1 Зал-Доска-2 Электричество Кодовый-Замок"
+                    data-inventory-items="Молоток"
                     >
                 </a-box>
                 <a-box
+                    id="end2"
                     position="-4.6 1.4 2.9" 
                     width="1.6" 
                     height="2.7" 
                     depth="0.1"
-                    id=""
                     src="../textures/doorleft.jpg"
-                    class="clickable collision"
+                    class="collision clickable unlock"
                     rotation="0 0 0"
+                    data-interactive-things="Зал-Доска-1 Зал-Доска-2 Электричество Кодовый-Замок"
+                    data-inventory-items="Молоток"
                     >
                 </a-box>    
             </a-entity>
@@ -585,22 +592,23 @@
                 width="1.9" 
                 height="2.7" 
                 depth="0.1"
-                id="to-coridor"
                 src="../textures/door.jpg"
                 class="clickable collision"
                 rotation="0 0 0"
+                id="to-coridor"
                 >
             </a-box>
-
             <!-- Дверь в комнату глав. врача -->
             <a-box
                 position="-9.4 1.3 0" 
                 width="1.9" 
                 height="2.7" 
                 depth="0.1"
-                id=""
+                id="door-doctor"
                 src="../textures/door.jpg"
-                class="clickable collision"
+                class="clickable collision unlock"
+                data-interactive-things="Замок"
+                data-inventory-items="Ключ"
                 rotation="0 270 0"
                 >
             </a-box>          
@@ -625,7 +633,7 @@
                 width="1.9" 
                 height="2.7" 
                 depth="0.1"
-                id=""
+                id="to-coridor2"
                 src="../textures/door.jpg"
                 class="clickable collision"
                 rotation="0 0 0"
@@ -781,8 +789,7 @@
                 src="../textures/plank.jpg"
                 class="clickable interactive"
                 data-inventory-items="Молоток"
-                animation__position="property: position; to: -3 0 2.8; dur: 800; startEvents: use"
-                animation__rotate="property: rotation; to: 180; dur: 600; startEvents: use"
+
                 >
             </a-box>
 
@@ -802,8 +809,8 @@
             </a-box>
 
             <a-entity
-                id="Зал-Кодовый-Замок"
-                data-name="Зал-Кодовый-Замок"
+                id="Кодовый-Замок"
+                data-name="Кодовый-Замок"
                 data-inventory-items="Код"
                 gltf-model="../models/padlock.glb"
                 position="-0.75 1.15 7.6"
@@ -821,8 +828,8 @@
             </a-entity>
 
             <a-entity
-                id="Щиток"
-                data-name="Щиток"
+                id="Электричество"
+                data-name="Электричество"
                 gltf-model="../models/dark_mystery_effect.glb"
                 position="-0.75 0.5 6.6"
                 class="clickable"
@@ -836,16 +843,14 @@
             </a-entity>
 
             <a-entity
-                id="Зал-Замок"
-                data-name="Зал-Замок"    
+                id="Замок"
+                data-name="Замок"    
                 gltf-model="../models/lock_and_key.glb"
                 position="-9.3 0.9 -0.78"
                 scale="1.5 1.5 1.5"
                 rotation="0 90 0"
                 class="clickable interactive"
-                data-inventory-items="Ключ1"
-                animation__position="property: position; to: 0.8 0 -7.58; dur: 800; startEvents: use"
-                animation__rotate="property: rotation; to: 180; dur: 600; startEvents: use"
+                data-inventory-items="Ключ"
                 >
             </a-entity>
 
@@ -885,13 +890,13 @@
                 const camera = document.getElementById("camera");
                 
                 if (locationController.lastLocation === "doctors-room") {
-                    camera.setAttribute("position", "6.3 0 -4.3")
+                    camera.setAttribute("position", "-7.3 0 0.4")
                 }
-                else if (locationController.lastLocation === "small-coridor") {
-                    camera.setAttribute("position", "-4.5 0 -7")
+                else if (locationController.lastLocation === "coridor2") {
+                    camera.setAttribute("position", "-7 0 -2.6")
                 }
                 else if (locationController.lastLocation === "coridor") {
-                    camera.setAttribute("position", "0 0 -4")
+                    camera.setAttribute("position", "0 0 -5")
                 }
                 else if (locationController.lastLocation === "tools-room") {
                     camera.setAttribute("position", "7 0 -2.9")
@@ -910,13 +915,23 @@
                 window.location.replace("./coridor.html");
             });
 
+            document.getElementById('to-coridor2').addEventListener('click', (event) => {
+                window.location.replace("./coridor2.html");
+            });
+
             document.getElementById('to-tools-room').addEventListener('click', (event) => {
                 window.location.replace("./tools-room.html");
             });
 
-            document.getElementById("Щиток").addEventListener('click', (event) => {
+            document.getElementById('door-doctor').addEventListener('click', (event) => {
+                if (unlockThings.checkUnlock(event.target)) {
+                    window.location.replace("./doctors-room.html");
+                }
+            });
+
+            document.getElementById("Электричество").addEventListener('click', (event) => {
                 let cameraPosition = document.getElementById("camera").getAttribute("position")
-                let electric = document.getElementById("Щиток").getAttribute("position")
+                let electric = document.getElementById("Электричество").getAttribute("position")
 
                 console.log(cameraPosition)
                 console.log(electric)
@@ -926,6 +941,23 @@
                 if (Math.abs(cameraPosition.x - electric.x) < 1 && Math.abs(cameraPosition.z - electric.z) < 0.8) {
                     document.getElementById("death-screen").style.display = "flex";
                 }
+            });
+
+            document.getElementById('end1').addEventListener('click', (event) => {
+                if (unlockThings.checkUnlock(event.target)) {
+                    document.getElementById("win-screen").style.display = "flex";
+                }
+            })
+
+            document.getElementById('end2').addEventListener('click', (event) => {
+                if (unlockThings.checkUnlock(event.target)) {
+                    document.getElementById("win-screen").style.display = "flex";
+                }
+            })
+
+            document.getElementById('win_button').addEventListener('click', (event) => {
+                sessionStorage.clear();
+                window.location.replace("./start-room.html");
             });
         </script>
     </body>

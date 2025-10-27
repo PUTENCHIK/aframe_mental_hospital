@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Стартовая Комната</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+
+    <a-scene fog="type: linear; color: #000000; near: 1; far: 12">
+        <a-sky color="#000000"></a-sky>
+        <a-entity></a-entity>
+    
+        
+        <a-box 
+            position="1 2 -5"
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            class="collision">
+        
+        </a-box>
+
+        <a-entity light="type: point; color: #ffcc66; intensity: 0.5; distance: 30; decay: 2;" position="0 1 0"></a-entity>
+<a-entity light="type: point; color: #ffcc66; intensity: 0.5; distance: 30; decay: 2;" position="5 1 0"></a-entity>
+<a-entity light="type: directional; color: #ffffff; intensity: 0.5" position="0 1 0" rotation="-30 0 0"></a-entity>
+        <a-box 
+            position="-3 2 -5" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            class="collision"
+            >    
+        </a-box>
+        <a-box 
+            position="5 2 -5"
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            class="collision">
+        
+        </a-box>
+
+        
+        <a-box 
+            position="9 2 -5" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            class="collision"
+            >    
+        </a-box>
+        
+
+
+
+        <a-box 
+            position="-4.89647 2 0" 
+            width="10" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png" 
+            material="" 
+            geometry="" 
+            rotation="0 90 0"
+            class="collision">
+
+        </a-box>
+        <a-box 
+            position="2.95 2 5" 
+            width="10" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png" 
+            material="" 
+            geometry="" 
+            rotation="0 90 0"
+            class="collision">
+
+        </a-box>
+
+
+        <a-box 
+            position="10 2 1" 
+            width="12" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png" 
+            material="" 
+            geometry="" 
+            rotation="0 90 0"
+            class="collision">
+
+        </a-box>
+        
+         <a-box 
+            position="1 2 -0.05" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            material="" 
+            geometry="" 
+            rotation="0 0 0"
+            class="collision">
+            <a-entity light="type: point; color: #ffcc66; intensity: 2; distance: 1000; decay: 2;" position="1 1 -2"></a-entity>
+        </a-box>
+
+        <a-box
+            position="-3 2 -0.05" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            material="" 
+            geometry="" 
+            rotation="0 180 0"
+            class="collision"
+            >
+        </a-box>
+
+
+
+        <a-box 
+            position="9 2 7" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            class="collision"
+            >
+        </a-box>
+
+        <a-box
+            position="5 2 7" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_wash.png"
+            class="collision"
+            >
+        </a-box>
+
+
+        <a-box
+            position="-2 1.4 -4.9" 
+            width="1.9" 
+            height="2.7" 
+            depth="0.1"
+            id="to-coridor"
+            src="../textures/door.jpg"
+            class="clickable collision"
+            >
+        </a-box>
+        
+
+        <a-plane position="7 4 -1" rotation="90 0 0" width="8" height="16" color="#5C4F3B" src="../textures/floor_icon.jpg"
+        material="metalness:0; roughness:1">
+            <a-entity light="type: point; color: #ffcc66; intensity: 0.5; distance: 30; decay: 2;" position="7 3 -1"></a-entity>
+        </a-plane>
+        <a-plane position="-1 4 -1" rotation="90 0 0" width="8" height="8" color="#5C4F3B" src="../textures/floor_icon.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+        
+
+        <a-plane position="4 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="6 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="8 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="10 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+
+        <a-plane position="4 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="6 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="8 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="10 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+
+
+        <a-plane position="4 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="6 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="8 0 0" rotation="-90 0 90" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="10 0 0" rotation="-90 0 180" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+
+        <a-plane position="4 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="6 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="8 0 2" rotation="-90 0 90" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="10 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="4 0 4" rotation="-90 0 180" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="6 0 4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="8 0 4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="10 0 4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="4 0 6" rotation="-90 0 -90" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="6 0 6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="8 0 6" rotation="-90 0 90" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="10 0 6" rotation="-90 0 180" width="2" height="2" color="#5C4F3B" src="../textures/floor_wash.jpeg"
+        material="metalness:0; roughness:1"></a-plane>
+        
+        
+        
+           
+    
+        <!-- Камера -->
+        <a-entity id="cameraRig" position="0 1.7 -4" rotation="0 180 0">
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision="with: .collision">
+            </a-entity>
+        </a-entity>
+
+
+        <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            raycaster="objects: .clickable">
+        </a-entity>
+
+
+        </a-entity>
+         <!-- РАКОВИНА -->
+        <a-entity
+            gltf-model="../models/sink_basin.glb"
+            position="-4 -1.0 -2.4"
+            scale="0.07 0.07 0.07"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+        </a-entity>
+         <!-- РАКОВИНА -->
+        <a-entity
+            gltf-model="../models/sink_basin.glb"
+            position="-4 -1.0 -2.4"
+            scale="0.07 0.07 0.07"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+         <!-- Ванна-->
+        <a-entity
+            gltf-model="../models/bloody_bath.glb"
+            position="8 0.0 5"
+            scale="0.02 0.02 0.02"
+            rotation="0 180 0"
+            class="collision">
+
+        </a-entity>
+        <a-entity
+            gltf-model="../models/bloody_bath.glb"
+            position="8 0.0 2"
+            scale="0.02 0.02 0.02"
+            rotation="0 0 0"
+            class="collision">
+
+        </a-entity>
+        <a-entity
+            gltf-model="../models/curtain.glb"
+            position="8 0.0 2"
+            scale="2 2 2"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+        <a-entity
+            gltf-model="../models/curtain.glb"
+            position="7 0.0 2"
+            scale="2 2 2"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+        <a-entity
+            gltf-model="../models/curtain.glb"
+            position="6 0.0 2"
+            scale="2 2 2"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+        <a-entity
+            gltf-model="../models/curtain.glb"
+            position="8 0.0 -1"
+            scale="2 2 2"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+        <a-entity
+            gltf-model="../models/curtain.glb"
+            position="7 0.0 -1"
+            scale="2 2 2"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+        <a-entity
+            gltf-model="../models/curtain.glb"
+            position="6 0.0 -1"
+            scale="2 2 2"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+       
+
+    </a-scene>
+    <script src="../scripts/reset-on-collision.js"></script>
+    <script>
+        document.getElementById('to-coridor').addEventListener('click', (event) => {
+            window.location.replace("./coridor2.html");
+        });
+    </script>
+</body>
+</html>

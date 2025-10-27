@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Маленький коридор</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="../styles/inventory.css">
+    <link rel="stylesheet" href="../styles/notification.css">
+</head>
+<body>
+    <!-- Инвентарь -->
+    <div class="ui-overlay">
+        <div class="inventory-title">🎒 Инвентарь</div>
+        <div class="inventory-items" id="inventory-ui">
+            <!-- Слоты инвентаря будут заполняться здесь -->
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        Предмет добавлен в инвентарь!
+    </div>
+    <!-- /Инвентарь -->
+    <a-scene fog="type: linear; color: #000000; near: 100; far: 12000">
+        <a-sky color="#000000"></a-sky>
+        <a-entity light="type: ambient; color: #111111; intensity: 1"></a-entity>
+    
+        <a-box 
+            position="-3 2 -9" 
+            width="12" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_coridor2.jpg"
+            class="collision"> 
+        </a-box> 
+        <a-box 
+            position="-5.95 2 -5.05" 
+            width="6" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_coridor2.jpg"
+            class="collision"> 
+        </a-box> 
+
+       </a-box>
+        <a-entity light="type: point; color: #ffcc66; intensity: 0.2; distance: 1000; decay: 2;"
+            position="0 1 0"></a-entity>
+        <a-entity light="type: point; color: #ffcc66; intensity: 0.2; distance: 1000; decay: 2;"
+            position="0 1 4"></a-entity>
+        <a-entity light="type: point; color: #ffcc66; intensity: 0.2; distance: 1000; decay: 2;"
+            position="0 1 -6"></a-entity>
+        <a-entity light="type: point; color: #ffcc66; intensity: 0.2; distance: 1000; decay: 2;"
+            position="0 1 -6"></a-entity>
+        <a-entity light="type: point; color: #ffcc66; intensity: 0.2; distance: 1000; decay: 2;"
+            position="-6 1 -6"></a-entity>
+        
+        
+
+
+
+        <a-box 
+            position="-3 2 0" 
+            width="10" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_coridor2.jpg" 
+            material="" 
+            geometry="" 
+            rotation="0 90 0"
+            class="collision">
+
+        </a-box>
+
+        <a-box 
+            position="-8 2 -7" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_coridor2.jpg" 
+            material="" 
+            geometry="" 
+            rotation="0 90 0"
+            class="collision">
+
+        </a-box>
+        <a-box 
+            position="1 2 1" 
+            width="20" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_coridor2.jpg" 
+            material="" 
+            geometry="" 
+            rotation="0 90 0"
+            class="collision">
+
+        </a-box>
+        
+         <a-box 
+            position="1 2 3" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_coridor2.jpg"
+            class="collision"
+            >
+        </a-box>
+
+        <a-box
+            position="-3 2 3" 
+            width="4" 
+            height="4" 
+            depth="0.1" 
+            src="../textures/wall_coridor2.jpg"
+            class="collision"
+            >
+        </a-box>
+        <a-box
+            position="-7.9 1.4 -7" 
+            width="1.9" 
+            height="2.7" 
+            depth="0.1"
+            rotation="0 90 0"
+            id="to-main_hall"
+            src="../textures/door.jpg"
+            class="clickable collision"
+
+            >
+        </a-box>
+        <a-box
+            position="0.9 1.4 -2" 
+            width="1.9" 
+            height="2.7" 
+            depth="0.1"
+            rotation="0 90 0"
+            id="to-health"
+            src="../textures/door.jpg"
+            class="clickable collision unlock"
+            data-interactive-things="Доска-1 Доска-2"
+            data-inventory-items="Молоток"
+            >
+        </a-box>
+        <a-box
+            position="-1 1.4 2.9" 
+            width="1.9" 
+            height="2.7" 
+            depth="0.1"
+            rotation="0 0 0"
+            id="to-washroom"
+            src="../textures/door.jpg"
+            class="clickable collision"
+            >
+        </a-box>
+
+
+        <a-plane position="-1 4 -1" rotation="90 0 0" width="16" height="16" color="#5C4F3B" src="../textures/floor_icon.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" src="../textures/manyblood.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 -2" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 -4" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 0" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        <a-plane position="0 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        <a-plane position="0 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-4 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        <a-plane position="2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="4 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        <a-plane position="-2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="2 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-6 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-6 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        <a-plane position="-6 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-6 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        <a-plane position="-8 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-8 0 -8" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        <a-plane position="-8 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+
+        <a-plane position="-8 0 -6" rotation="-90 0 0" width="2" height="2" color="#5C4F3B" src="../textures/floor.jpg"
+        material="metalness:0; roughness:1"></a-plane>
+        
+        
+   
+    
+        <!-- Камера -->
+        <a-entity id="cameraRig" position="0 1.6 0">
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration:20" reset-on-collision="with: .collision">
+            </a-entity>
+        </a-entity>
+
+
+        <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            raycaster="objects: .clickable">
+        </a-entity>
+
+
+
+        
+
+        
+
+
+
+        <!-- Картина php -->
+        <a-entity
+            gltf-model="../models/wall_picture.glb"
+            position="-2.9 2.3 0.5"
+            scale="1 1 1"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+        <a-box
+            position="-2.85 2.3 0.5" 
+            width="0.01" 
+            height="1.1" 
+            depth="1.75" 
+            color="#87CEEB"
+            src="../textures/php.png"
+            class="collision"
+            rotation="0 0 0">    
+        </a-box>
+        <!-- Картина улыбка -->
+        <a-entity
+            gltf-model="../models/wall_picture.glb"
+            position="0.9 2.3 0.5"
+            scale="1 1 1"
+            rotation="0 270 0"
+            class="collision">
+
+        </a-entity>
+        <!-- Картина улыбка -->
+        <a-box
+            position="0.85 2.3 0.5" 
+            width="0.01" 
+            height="1.1" 
+            depth="1.75" 
+            color="#87CEEB"
+            src="../textures/smile.jpg"
+            class="collision"
+            rotation="0 0 0">
+            
+        </a-box>
+        <!-- Картина Резня -->
+        <a-entity
+            gltf-model="../models/wall_picture.glb"
+            position="0.9 2.3 -6"
+            scale="2 2 2"
+            rotation="0 270 0"
+            class="collision">
+
+        </a-entity>
+        
+        <a-box
+            position="0.85 2.3 -6" 
+            width="0.01" 
+            height="2.2" 
+            depth="3.5" 
+            color="#87CEEB"
+            src="../textures/fight.jpg"
+            class="collision"
+            rotation="0 0 0">
+            
+        </a-box>
+
+
+
+   
+        
+        <!-- Картина психа -->
+        <a-entity
+            gltf-model="../models/wall_picture.glb"
+            position="-2.9 2.3 -2"
+            scale="1 2 1"
+            rotation="0 90 0"
+            class="collision">
+
+        </a-entity>
+   
+        <!-- Картина психа фото -->
+        <a-box
+            position="-2.85 2.3 -2" 
+            width="0.01" 
+            height="2.2" 
+            depth="1.75" 
+            color="#87CEEB"
+            src="../textures/sit.jpg"
+            class="collision"
+            rotation="0 0 0">
+            
+        </a-box>
+
+        <!-- Кровь -->
+        <a-entity
+            gltf-model="../models/blood.glb"
+            position="1.6 0 -2"
+            scale="0.1 0.1 0.1"
+            rotation="0 -90 0">
+        </a-entity>
+
+        <a-box
+            id="Доска-1"
+            data-name="Доска-1"
+            position="0.8 0.95222 -2" 
+            width="2.6" 
+            height="0.3" 
+            depth="0.1" 
+            src="../textures/plank.jpg"
+            class="clickable interactive"
+            data-inventory-items="Молоток"
+            rotation="0 90 0"
+            >
+        </a-box>        
+
+        <a-box
+            id="Доска-2"
+            data-name="Доска-2"
+            position="0.8 2 -2" 
+            width="2.6" 
+            height="0.3" 
+            depth="0.1" 
+            src="../textures/plank.jpg"
+            class="clickable interactive"
+            data-inventory-items="Молоток"
+            rotation="0 90 0"
+            >
+        </a-box>    
+
+
+    </a-scene>
+    <!-- Кодик для инвентаря и интерактивных объектов -->
+    <script src="../scripts/inventory.js"></script>
+    <script src="../scripts/interactiveThings.js"></script>
+    <script src="../scripts/unlockThings.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script>
+        let inventorySystem;
+        let interactiveThings;
+        let notification;
+        let unlockThings;
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            notification = new Notifications();
+            inventorySystem = new InventorySystem(notification);
+            interactiveThings = new InteractiveThings(inventorySystem, notification);
+            unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+        }); 
+    </script>
+    <!-- /Кодик для инвентаря -->
+    <script src="../scripts/reset-on-collision.js"></script>
+    <script>
+        document.getElementById('to-health').addEventListener('click', (event) => {
+            if (unlockThings.checkUnlock(event.target)) {
+                window.location.replace("./health.html");
+            }
+        });
+         document.getElementById('to-washroom').addEventListener('click', (event) => {
+            window.location.replace("./washroom.html");
+        });
+         document.getElementById('to-main_hall').addEventListener('click', (event) => {
+            window.location.replace("./main-hall.html");
+        });
+    </script>
+    <script src="../scripts/locationController.js"></script>
+    <script>
+        const locationController = new LocationController("coridor2");
+        locationController.updateLastLocation();
+    </script>
+</body>
+</html>

@@ -1,9 +1,22 @@
 <html>
     <head>
         <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-        
+        <link rel="stylesheet" href="../styles/inventory.css">
+        <link rel="stylesheet" href="../styles/notification.css">
     </head>
     <body>
+        <!-- Инвентарь -->
+        <div class="ui-overlay">
+            <div class="inventory-title">🎒 Инвентарь</div>
+            <div class="inventory-items" id="inventory-ui">
+                <!-- Слоты инвентаря будут заполняться здесь -->
+            </div>
+        </div>
+        
+        <div class="notification" id="notification">
+            Предмет добавлен в инвентарь!
+        </div>
+        <!-- /Инвентарь -->
         <a-scene>
         <!--Текстуры-->
         <a-assets>
@@ -171,7 +184,7 @@
 
         <!-- Камера -->       
         <a-entity id="cameraRig" position="0 1.6 0">
-            <a-entity id="camera" camera="" look-controls="" wasd-controls="acceleration: 20" reset-on-collision="colliderSize: 1" position="25.87963 0 -2.23233" geometry="depth: 0.5; height: 0.5; width: 0.5">
+            <a-entity id="camera" camera look-controls="" wasd-controls="acceleration: 20" reset-on-collision="colliderSize: 1" position="25.87963 0 -2.23233" geometry="depth: 0.5; height: 0.5; width: 0.5">
                 <a-entity id="headLight" light="color: #ffffff; distance: 7; intensity: 1; type: point"></a-entity>
             </a-entity>
         </a-entity>
@@ -186,6 +199,25 @@
 
     </a-scene>
     <script src="../scripts/reset-on-collision.js"></script>
+    <!-- Кодик для инвентаря и интерактивных объектов -->
+    <script src="../scripts/inventory.js"></script>
+    <script src="../scripts/interactiveThings.js"></script>
+    <script src="../scripts/unlockThings.js"></script>
+    <script src="../scripts/notifications.js"></script>
+    <script>
+        let inventorySystem;
+        let interactiveThings;
+        let notification;
+        let unlockThings;
+
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            notification = new Notifications();
+            inventorySystem = new InventorySystem(notification);
+            interactiveThings = new InteractiveThings(inventorySystem, notification);
+            unlockThings = new UnlockThings(inventorySystem, interactiveThings, notification);
+        }); 
+    </script>
+    <!-- /Кодик для инвентаря -->
     <!-- Кодик для локаций -->
     <script src="../scripts/locationController.js"></script>
     <script>
@@ -195,13 +227,13 @@
             const camera = document.getElementById("camera");
 
             if (locationController.lastLocation === "start-room") {
-                camera.setAttribute("position", "27 0 -2.5")
+                camera.setAttribute("position", "17.5 0 -1.6")
             }
             else if (locationController.lastLocation === "treatment-room"){
-                camera.setAttribute("position", "-9.75 0 14.5")
+                camera.setAttribute("position", "-6 0 7.6")
             }
             else if (locationController.lastLocation === "main-hall"){
-                camera.setAttribute("position", "-12.3 0 11.2")
+                camera.setAttribute("position", "-6 0 7.6")
             }
             else if (locationController.lastLocation === "bathroom") {
                 camera.setAttribute("position", "-1.7 0 -2.5")
@@ -220,9 +252,7 @@
         document.getElementById('to-main-hall').addEventListener('click', (event) => {
             window.location.replace("./main-hall.html");
         });
-        document.getElementById('to-bathroom').addEventListener('click', (event) => {
-            window.location.replace("./bathroom.html");
-        });
+
         document.getElementById('to-treatment-room').addEventListener('click', (event) => {
             window.location.replace("./treatment-room.html");
         });

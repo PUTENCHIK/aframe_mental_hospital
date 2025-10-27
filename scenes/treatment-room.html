@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Кабинет главного врача</title>
+    <title>Комната лечения</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <link rel="stylesheet" href="../styles/inventory.css">
     <link rel="stylesheet" href="../styles/notification.css">
@@ -22,8 +22,8 @@
         Предмет добавлен в инвентарь!
     </div>
     <!-- /Инвентарь -->
-
-    <a-scene renderer="antialias: true; alpha: true; sortObjects: true; physicallyCorrectLights: true; precision: high; colorManagement: true; depth: true; logarithmicDepthBuffer: true" fog="type: linear; color: #000000; near: 500; far: 5000">
+    <!--  -->
+    <a-scene fog="type: linear; color: #000000; near: 500; far: 5000" renderer="antialias: true; alpha: true; sortObjects: true; physicallyCorrectLights: true; precision: high; colorManagement: true; depth: true; logarithmicDepthBuffer: true" >
         
         <a-sky color="#000000"></a-sky>
         <a-entity light="type: ambient; color: #111111; intensity: 0.1"></a-entity>
@@ -149,6 +149,19 @@
 
         <!--Пила в шкафу-->
         <a-entity gltf-model="../models/bloody_saw.glb" position="-0.1159 0.90699 -10.47315" scale="0.4 0.4 0.4" rotation="0 65 90" class="collision"></a-entity>
+
+        <!-- Кусачки -->
+        <a-entity
+            id="Кусачки"
+            data-icon="✂️"
+            data-name="Кусачки"
+            class="collectable clickable" 
+
+            gltf-model="../models/nippers.glb"
+            position="-6.26433 0.78 -1.17"
+            scale="1.3 1.3 1.3"
+            rotation="90 0 0">
+        </a-entity>
 
     </a-scene>
 
